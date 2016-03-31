@@ -48,12 +48,16 @@
     ext.getJSON = function(word, lang1, lang2, callback) {
       setupLanguages(lang1,lang2);
       loadJSON(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, getData);
+      function getData(data) {
+        var the_word = data.text[0];
+        callback(the_word);
+      }
     };
 
-    ext.getData = function(data, callback) {
-      var the_word = data.text[0];
-      callback(the_word);
-    };
+    // ext.getData = function(data, callback) {
+    //   var the_word = data.text[0];
+    //   callback(the_word);
+    // };
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
