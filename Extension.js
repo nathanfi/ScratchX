@@ -11,8 +11,8 @@
     //var word = 'Hello';
     // var lang1 = "en";
     // var lang2 = "es";
-    var lan1;
-    var lan2;
+    var lan1 = '';
+    var lan2 = '';
     ext.setupLanguages = function(lang1,lang2) {
       if (lang1 == 'English') {
         lan1 = 'en';
