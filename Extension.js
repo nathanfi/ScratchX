@@ -51,7 +51,7 @@
     };
 
     ext.getData = function(data, callback) {
-      callback(data.text);
+      callback(data.text[0]);
     };
     // Block and block menu descriptions
     var descriptor = {
