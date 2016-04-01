@@ -62,7 +62,7 @@
     //   lan2 = data.languages[0];
     // };
     function whatIsTheWord() {
-        the_word = jsonRequest.responseJSON;
+        the_word = jsonRequest.responseText;
     }
     // Block and block menu descriptions
     var descriptor = {
