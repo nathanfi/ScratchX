@@ -45,11 +45,13 @@
         lan2 = 'fr';
       }
     };
-    ext.Translate = function(word, lang1, lang2, option, callback) {
+    ext.Translate = function(word, lang1, lang2, option) {
       if (option == 'Language'){
         setupLanguages(lang1,lang2);
       }
-      loadJSON(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
+      loadJSON(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, myFunction);
+    };
+    ext.myFunction = function(data, callback) {
       var the_word = data.text[0];
       callback(the_word);
     };
