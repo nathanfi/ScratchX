@@ -52,7 +52,8 @@
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.open('GET', url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
       jsonRequest.send();
-      callback(jsonRequest.responseText);
+      var the_word = jsonRequest.responseText.languages[0];
+      callback(the_word);
       // loadJSON(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, myFunction);
       // $.ajax({
       //       url: url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2,
