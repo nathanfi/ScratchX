@@ -49,17 +49,22 @@
       if (option == 'Language'){
         setupLanguages(lang1,lang2);
       }
-      loadJSON(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, myFunction);
+      // loadJSON(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, myFunction);
+      $.ajax({
+            url: url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2,
+            dataType: 'json',
+            success: function(data) {
+                // Got the data - parse it and return the temperature
+                the_word = data.text[0];
+                callback(the_word);
+            }
+      });
     };
-    ext.myFunction = function(data, callback) {
-      var the_word = data.text[0];
-      callback(the_word);
-    };
-    ext.getLanguage = function() {
-      var countrycode = 'cn';
-      loadJSON('https://restcountries.eu/rest/v1/alpha/'+countrycode);
-      lan2 = data.languages[0];
-    };
+    // ext.getLanguage = function() {
+    //   var countrycode = 'cn';
+    //   loadJSON('https://restcountries.eu/rest/v1/alpha/'+countrycode);
+    //   lan2 = data.languages[0];
+    // };
 
     // Block and block menu descriptions
     var descriptor = {
