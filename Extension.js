@@ -63,7 +63,7 @@
       // }
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE){
+        if (jsonRequest.readyState === XMLHttpRequest.DONE) {
         var JSONtext = jsonRequest.responseText;
             the_word = JSON.parse(JSONtext);
             callback(the_word.languages[0]);
