@@ -7,6 +7,7 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
+    getRequest('this.is.my/awesome/url', function(data) { console.log(JSON.parse(data)); });
     var url_beg = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
     //var word = 'Hello';
     // var lang1 = "en";
