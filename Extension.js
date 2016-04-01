@@ -83,7 +83,7 @@
         ],
         menus: {
           lang1: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian'],
-          lang2: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian'],
+          lang2: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian']
         }
     };
 
