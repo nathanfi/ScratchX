@@ -60,12 +60,12 @@
       if (option == 'Language'){
         setupLanguages(lang1,lang2);
       }
-      var jsonRequest = new XMLHttpRequest();
-      jsonRequest.onreadystatechange = whatIsTheWord;
-      jsonRequest.open('GET', url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
-      jsonRequest.send();
-      callback(the_word.languages[0]);
+      // var jsonRequest = new XMLHttpRequest();
+      // jsonRequest.onreadystatechange = whatIsTheWord;
+      // jsonRequest.open('GET', url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
+      // jsonRequest.send();
       getRequest(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, function(data) {the_word = JSON.parse(data);});
+      callback(the_word.languages[0]);
     };
     // ext.getLanguage = function() {
     //   var countrycode = 'cn';
