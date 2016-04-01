@@ -51,9 +51,9 @@
         setupLanguages(lang1,lang2);
       }
       var jsonRequest = new XMLHttpRequest();
+      jsonRequest.onreadystatechange = whatIsTheWord;
       jsonRequest.open('GET', url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
       jsonRequest.send();
-      httpRequest.onreadystatechange = whatIsTheWord;
       callback(the_word.languages[0]);
     };
     // ext.getLanguage = function() {
