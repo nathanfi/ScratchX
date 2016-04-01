@@ -45,7 +45,7 @@
         lan2 = 'fr';
       }
     };
-    ext.Translate = function(word, lang1, lang2, option) {
+    ext.translate = function(word, lang1, lang2, option, callback) {
       if (option == 'Language'){
         setupLanguages(lang1,lang2);
       }
@@ -69,7 +69,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'Translate', 'Hello', 'English','Spanish', 'Language']
+          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'English','Spanish', 'Language']
         ],
         menus: {
           lang1: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian'],
