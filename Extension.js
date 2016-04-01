@@ -45,21 +45,24 @@
         lan2 = 'fr';
       }
     };
-    ext.getJSON = function(word, lang1, lang2, callback) {
-      setupLanguages(lang1,lang2);
+    ext.Translate = function(word, lang1, lang2, option, callback) {
+      if (option == 'Language'){
+        setupLanguages(lang1,lang2);
+      }
       loadJSON(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
-        var the_word = data.text[0];
-        callback(the_word);
+      var the_word = data.text[0];
+      callback(the_word);
+    };
+    ext.getLanguage = function() {
+      var countrycode = 'cn';
+      loadJSON('https://restcountries.eu/rest/v1/alpha/'+countrycode);
+      lan2 = data.languages[0];
     };
 
-    // ext.getData = function(data, callback) {
-    //   var the_word = data.text[0];
-    //   callback(the_word);
-    // };
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'getJSON', 'Hello', 'English','Spanish']
+          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'Translate', 'Hello', 'English','Spanish', 'Language']
         ],
         menus: {
           lang1: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian'],
