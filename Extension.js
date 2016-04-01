@@ -1,7 +1,17 @@
 (function(ext) {
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
+    var getRequest = function(url, callback) {
+      var xhr = new XMLHttpRequest();
 
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE)
+          callback(xhr.status === 200 ? xhr.responseText : null);
+      };
+
+      xhr.open('GET', url, true);
+      xhr.send();
+    };
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
