@@ -13,7 +13,7 @@
     // var lang2 = "es";
     var lan1 = '';
     var lan2 = '';
-    ext.setupLanguages = function(lang1,lang2) {
+    function setupLanguages(lang1,lang2) {
       if (lang1 == 'English') {
         lan1 = 'en';
       } else if (lang1 == 'Spanish') {
@@ -44,7 +44,7 @@
       } else if (lang2 == 'French') {
         lan2 = 'fr';
       }
-    };
+    }
     ext.translate = function(word, lang1, lang2, option, callback) {
       if (option == 'Language'){
         setupLanguages(lang1,lang2);
