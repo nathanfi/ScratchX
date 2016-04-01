@@ -50,7 +50,7 @@
         setupLanguages(lang1,lang2);
       }
       var jsonRequest = new XMLHttpRequest();
-      jsonRequest.open('Get', url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
+      jsonRequest.open('GET', url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
       jsonRequest.send();
       callback(jsonRequest.responseText);
       // loadJSON(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, myFunction);
