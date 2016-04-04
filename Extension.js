@@ -18,7 +18,7 @@
         return {status: 2, msg: 'Ready'};
     };
     var url_beg = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
-    //var word = 'Hello';
+    var word = 'Hello';
     // var lang1 = "en";
     // var lang2 = "es";
     var lan1 = '';
@@ -59,19 +59,19 @@
     ext.translate = function(word, lang1, lang2, option, callback) {
       lan1 = 'en';
       lan2 = 'es';
-      // if (option == 'Language'){
-      //   setupLanguages(lang1,lang2);
-      // }
-      // var jsonRequest = new XMLHttpRequest();
-      // jsonRequest.onreadystatechange = function() {
-      //   if (jsonRequest.readyState === XMLHttpRequest.DONE) {
-      //   var JSONtext = jsonRequest.responseText;
-      //       the_word = JSON.parse(JSONtext);
-      //       callback(the_word.languages[0]);
-      //   }
-      // };
-      // jsonRequest.open('GET', url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
-      // jsonRequest.send();
+      if (option == 'Language'){
+        setupLanguages(lang1,lang2);
+      }
+      var jsonRequest = new XMLHttpRequest();
+      jsonRequest.onreadystatechange = function() {
+        if (jsonRequest.readyState === XMLHttpRequest.DONE) {
+        var JSONtext = jsonRequest.responseText;
+            the_word = JSON.parse(JSONtext);
+            callback(the_word.languages[0]);
+        }
+      };
+      jsonRequest.open("GET", url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
+      jsonRequest.send();
       getRequest(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, function(data) {the_word = JSON.parse(data).text[0];});
     };
     // ext.getLanguage = function() {
