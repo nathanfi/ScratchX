@@ -20,8 +20,8 @@
         switch(lang[i]) {
           case 'English'   : lan[i] = 'en'; break;
           case 'Spanish'   : lan[i] = 'es'; break;
-          case 'Italian'   : lan[i] = 'it'; break;
           case 'Chinese'   : lan[i] = 'zh'; break;
+          case 'Italian'   : lan[i] = 'it'; break;
           case 'German'    : lan[i] = 'de'; break;
           case 'Russian'   : lan[i] = 'ru'; break;
           case 'French'    : lan[i] = 'fr'; break;
@@ -51,8 +51,8 @@
           ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'English','Spanish']
         ],
         menus: {
-          lang1: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian'],
-          lang2: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian']
+          lang1: ['English', 'Spanish', 'Chinese', 'French', 'German', 'Italian', 'Japanese', 'Portuguese', 'Russian'],
+          lang2: ['English', 'Spanish', 'Chinese', 'French', 'German', 'Italian', 'Japanese', 'Portuguese', 'Russian']
         }
     };
 
