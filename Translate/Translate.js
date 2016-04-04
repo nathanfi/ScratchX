@@ -60,15 +60,6 @@
       jsonRequest.open("GET", url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
       jsonRequest.send();
     };
-    // ext.getLanguage = function() {
-    //   var countrycode = 'cn';
-    //   loadJSON('https://restcountries.eu/rest/v1/alpha/'+countrycode);
-    //   lan2 = data.languages[0];
-    // };
-    // ext.whatIsTheWord = function() {
-    //   var JSONtext = jsonRequest.responseText;
-    //     the_word = JSON.parse(JSONtext);
-    // };
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
