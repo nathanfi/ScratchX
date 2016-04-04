@@ -59,9 +59,9 @@
     ext.translate = function(word, lang1, lang2, callback) {
       lan1 = 'en';
       lan2 = 'es';
-      if (option == 'Language'){
-        setupLanguages(lang1,lang2);
-      }
+      // if (option == 'Language'){
+      //   setupLanguages(lang1,lang2);
+      // }
       // var jsonRequest = new XMLHttpRequest();
       // jsonRequest.onreadystatechange = function() {
       //   if (jsonRequest.readyState === XMLHttpRequest.DONE) {
