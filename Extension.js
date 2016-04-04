@@ -72,7 +72,7 @@
       // };
       // jsonRequest.open('GET', url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
       // jsonRequest.send();
-      getRequest(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, function(data) {the_word = JSON.parse(data);});
+      getRequest(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, function(data) {the_word = JSON.parse(data).text[0];});
     };
     // ext.getLanguage = function() {
     //   var countrycode = 'cn';
