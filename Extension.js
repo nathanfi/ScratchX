@@ -6,78 +6,42 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    var url_beg = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
-    var word = 'Hello';
-    // var lang1 = "en";
-    // var lang2 = "es";
-    var lan1 = '';
-    var lan2 = '';
+    var url_beg = "https://translate.yandex.net/api/v1.5/tr.json/translate";
+    var key = "trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
+    //var word = 'Hello';
     var the_word = '';
-    ext.setupLanguages = function(lang1,lang2) {
-      if (lang1 == 'English') {
-        lan1 = 'en';
-      } else if (lang1 == 'Spanish') {
-        lan1 = 'es';
-      } else if (lang1 == 'Italian') {
-        lan1 = 'it';
-      } else if (lang1 == 'Chinese') {
-        lan1 = 'zh';
-      } else if (lang1 == 'German') {
-        lan1 = 'de';
-      } else if (lang1 == 'Russian') {
-        lan1 = 'ru';
-      } else if (lang1 == 'French') {
-        lan1 = 'fr';
-      }
-      if (lang2 == 'English') {
-        lan2 = 'en';
-      } else if (lang2 == 'Spanish') {
-        lan2 = 'es';
-      } else if (lang2 == 'Italian') {
-        lan2 = 'it';
-      } else if (lang2 == 'Chinese') {
-        lan2 = 'zh';
-      } else if (lang2 == 'German') {
-        lan2 = 'de';
-      } else if (lang2 == 'Russian') {
-        lan2 = 'ru';
-      } else if (lang2 == 'French') {
-        lan2 = 'fr';
-      }
-    };
-    ext.translate = function(word, lang1, lang2, callback) {
-      setupLanguages(lang1,lang2);
-      lan1 = 'en';
-      lan2 = 'es';
+    var lan = '';
+    ext.translate = function() {
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
         var JSONtext = jsonRequest.responseText;
             the_word = JSON.parse(JSONtext).text[0];
-            callback(the_word);
+            // callback(the_word);
         }
       };
-      jsonRequest.open("GET", url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
+      jsonRequest.open("GET", url_beg + "?key=" + key + "&text=" + word_input + "&lang=" + lan[0] + "-" + lan[1]);
       jsonRequest.send();
     };
-    // ext.getLanguage = function() {
-    //   var countrycode = 'cn';
-    //   loadJSON('https://restcountries.eu/rest/v1/alpha/'+countrycode);
-    //   lan2 = data.languages[0];
-    // };
-    // ext.whatIsTheWord = function() {
-    //   var JSONtext = jsonRequest.responseText;
-    //     the_word = JSON.parse(JSONtext);
-    // };
+    ext.getLanguage = function() {
+      var countrycode = 'cn';
+      loadJSON('https://restcountries.eu/rest/v1/alpha/'+countrycode);
+      lan = data.languages[0];
+    };
+    ext.whatIsTheWord = function() {
+      var JSONtext = jsonRequest.responseText;
+        the_word = JSON.parse(JSONtext);
+    };
+    ext.execute = function(word, callback) {
+      var word_input = word;
+
+      callback(the_word);
+    };
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'English','Spanish']
-        ],
-        menus: {
-          lang1: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian'],
-          lang2: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian']
-        }
+          ['R', 'Display %s in the local language', 'execute', 'Hello']
+        ]
     };
 
     // Register the extension
