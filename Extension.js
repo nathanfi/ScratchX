@@ -1,16 +1,17 @@
 (function(ext) {
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
-    // var getRequest = function(url, callback) {
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.onreadystatechange = function() {
-    //     if (xhr.readyState === XMLHttpRequest.DONE)
-    //       callback(xhr.status === 200 ? xhr.responseText : null);
-    //   };
-    //
-    //   xhr.open('GET', url, true);
-    //   xhr.send();
-    // };
+    var getRequest = function(url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          callback(xhr.status === 200 ? xhr.responseText : null);
+        }
+      };
+
+      xhr.open('GET', url, true);
+      xhr.send();
+    };
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
@@ -61,17 +62,17 @@
       // if (option == 'Language'){
       //   setupLanguages(lang1,lang2);
       // }
-      var jsonRequest = new XMLHttpRequest();
-      jsonRequest.onreadystatechange = function() {
-        if (jsonRequest.readyState === XMLHttpRequest.DONE) {
-        var JSONtext = jsonRequest.responseText;
-            the_word = JSON.parse(JSONtext);
-            callback(the_word.languages[0]);
-        }
-      };
-      jsonRequest.open('GET', url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
-      jsonRequest.send();
-      // getRequest(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, function(data) {the_word = JSON.parse(data);});
+      // var jsonRequest = new XMLHttpRequest();
+      // jsonRequest.onreadystatechange = function() {
+      //   if (jsonRequest.readyState === XMLHttpRequest.DONE) {
+      //   var JSONtext = jsonRequest.responseText;
+      //       the_word = JSON.parse(JSONtext);
+      //       callback(the_word.languages[0]);
+      //   }
+      // };
+      // jsonRequest.open('GET', url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
+      // jsonRequest.send();
+      getRequest(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, function(data) {the_word = JSON.parse(data);});
     };
     // ext.getLanguage = function() {
     //   var countrycode = 'cn';
