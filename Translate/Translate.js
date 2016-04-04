@@ -23,7 +23,6 @@
           case 'German':     lan[i] = 'de'; break;
           case 'Russian':    lan[i] = 'ru'; break;
           case 'French':     lan[i] = 'fr'; break;
-          case 'Japanese':   lan[i] = 'ja'; break;
           case 'Portuguese': lan[i] = 'pt'; break;
         }
       }
