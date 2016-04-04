@@ -62,16 +62,16 @@
       if (option == 'Language'){
         setupLanguages(lang1,lang2);
       }
-      var jsonRequest = new XMLHttpRequest();
-      jsonRequest.onreadystatechange = function() {
-        if (jsonRequest.readyState === XMLHttpRequest.DONE) {
-        var JSONtext = jsonRequest.responseText;
-            the_word = JSON.parse(JSONtext);
-            callback(the_word.languages[0]);
-        }
-      };
-      jsonRequest.open("GET", url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
-      jsonRequest.send();
+      // var jsonRequest = new XMLHttpRequest();
+      // jsonRequest.onreadystatechange = function() {
+      //   if (jsonRequest.readyState === XMLHttpRequest.DONE) {
+      //   var JSONtext = jsonRequest.responseText;
+      //       the_word = JSON.parse(JSONtext);
+      //       callback(the_word.languages[0]);
+      //   }
+      // };
+      // jsonRequest.open("GET", url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
+      // jsonRequest.send();
       getRequest(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, function(data) {the_word = JSON.parse(data).text[0];});
     };
     // ext.getLanguage = function() {
