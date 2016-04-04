@@ -56,7 +56,7 @@
     //     lan2 = 'fr';
     //   }
     // };
-    ext.translate = function(word, lang1, lang2, option, callback) {
+    ext.translate = function(word, lang1, lang2, callback) {
       lan1 = 'en';
       lan2 = 'es';
       if (option == 'Language'){
@@ -86,7 +86,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'English','Spanish', 'Language']
+          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'English','Spanish']
         ],
         menus: {
           lang1: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian'],
