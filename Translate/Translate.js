@@ -18,13 +18,16 @@
     ext.setupLanguages = function() {
       for (i=0;i<2;i++) {
         switch(lang[i]) {
-          case 'English': lan[i] = 'en'; break;
-          case 'Spanish': lan[i] = 'es'; break;
-          case 'Italian': lan[i] = 'it'; break;
-          case 'Chinese': lan[i] = 'zh'; break;
-          case 'German' : lan[i] = 'de'; break;
-          case 'Russian': lan[i] = 'ru'; break;
-          case 'French' : lan[i] = 'fr'; break;
+          case 'English'   : lan[i] = 'en'; break;
+          case 'Spanish'   : lan[i] = 'es'; break;
+          case 'Italian'   : lan[i] = 'it'; break;
+          case 'Chinese'   : lan[i] = 'zh'; break;
+          case 'German'    : lan[i] = 'de'; break;
+          case 'Russian'   : lan[i] = 'ru'; break;
+          case 'French'    : lan[i] = 'fr'; break;
+          case 'Japanese'  : lan[i] = 'ja'; break;
+          case 'Indonesian': lan[i] = 'id'; break;
+          case 'Portuguese': lan[i] = 'pt'; break;
         }
       }
     };
