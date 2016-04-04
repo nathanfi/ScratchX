@@ -13,42 +13,25 @@
     var lan1 = '';
     var lan2 = '';
     var the_word = '';
-    ext.setupLanguages = function(lang1,lang2) {
-      if (lang1 == 'English') {
-        lan1 = 'en';
-      } else if (lang1 == 'Spanish') {
-        lan1 = 'es';
-      } else if (lang1 == 'Italian') {
-        lan1 = 'it';
-      } else if (lang1 == 'Chinese') {
-        lan1 = 'zh';
-      } else if (lang1 == 'German') {
-        lan1 = 'de';
-      } else if (lang1 == 'Russian') {
-        lan1 = 'ru';
-      } else if (lang1 == 'French') {
-        lan1 = 'fr';
-      }
-      if (lang2 == 'English') {
-        lan2 = 'en';
-      } else if (lang2 == 'Spanish') {
-        lan2 = 'es';
-      } else if (lang2 == 'Italian') {
-        lan2 = 'it';
-      } else if (lang2 == 'Chinese') {
-        lan2 = 'zh';
-      } else if (lang2 == 'German') {
-        lan2 = 'de';
-      } else if (lang2 == 'Russian') {
-        lan2 = 'ru';
-      } else if (lang2 == 'French') {
-        lan2 = 'fr';
+    var lang = [];
+    var lan = [];
+    ext.setupLanguages = function() {
+      for (i=0;i<2;i++) {
+        switch(lang[i]) {
+          case 'English': lan[i] = 'en'; break;
+          case 'Spanish': lan[i] = 'es'; break;
+          case 'Italian': lan[i] = 'it'; break;
+          case 'Chinese': lan[i] = 'zh'; break;
+          case 'German' : lan[i] = 'de'; break;
+          case 'Russian': lan[i] = 'ru'; break;
+          case 'French' : lan[i] = 'fr'; break;
+        }
       }
     };
-    ext.translate = function(word, lang1, lang2, callback) {
-      setupLanguages(lang1,lang2);
-      lan1 = 'en';
-      lan2 = 'es';
+    ext.translate = function(word, language1, language2, callback) {
+      lang[0] = language1;
+      lang[1] = language2;
+      setupLanguages();
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
@@ -57,7 +40,7 @@
             callback(the_word);
         }
       };
-      jsonRequest.open("GET", url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2);
+      jsonRequest.open("GET", url_beg + "&text=" + word + "&lang=" + lan[0] + "-" + lan[1]);
       jsonRequest.send();
     };
     // Block and block menu descriptions
