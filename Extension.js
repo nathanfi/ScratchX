@@ -8,7 +8,7 @@
     };
 
     var the_word = '';
-    var lan = '';
+    var languagecode = '';
     var lattitude = 47.03;
     var longitude = 10.2;
     var countrycode = '';
@@ -24,7 +24,7 @@
       };
       var url_beg = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
       var key = "trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
-      jsonRequestTranslate.open("GET", url_beg + "key=" + key + "&text=" + word_input + "&lang=" + lan[0] + "-" + lan[1]);
+      jsonRequestTranslate.open("GET", url_beg + "key=" + key + "&text=" + word_input + "&lang=" + languagecode);
       jsonRequestTranslate.send();
     };
 
@@ -34,7 +34,6 @@
         if (jsonRequestCountry.readyState === XMLHttpRequest.DONE) {
         var JSONtextCountry = jsonRequestCountry.responseText;
             countrycode = JSON.parse(JSONtextCountry);
-            // callback(the_word);
         }
       };
       var url_beg = 'http://api.geonames.org/countryCode?';
@@ -43,14 +42,23 @@
     };
 
     ext.getLanguage = function() {
-      loadJSON('https://restcountries.eu/rest/v1/alpha/'+countrycode);
-      lan = data.languages[0];
+      var jsonRequestLanguage = new XMLHttpRequest();
+      jsonRequestLanguage.onreadystatechange = function() {
+        if (jsonRequestLanguage.readyState === XMLHttpRequest.DONE) {
+        var JSONtextLanguage = jsonRequestLanguage.responseText;
+            languagecode = JSON.parse(JSONtextLanguage).languages[0];
+        }
+      };
+      var url_beg = 'https://restcountries.eu/rest/v1/alpha/';
+      jsonRequestLanguage.open("GET", url_beg + countrycode);
+      jsonRequestLanguage.send();
     };
-
 
     ext.execute = function(word, callback) {
       var word_input = word;
-
+      ext.getCountry();
+      ext.getLanguage();
+      ext.translate();
       callback(the_word);
     };
     // Block and block menu descriptions
