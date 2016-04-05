@@ -33,9 +33,9 @@
       var jsonRequestCountry = new XMLHttpRequest();
       jsonRequestCountry.onreadystatechange = function() {
         if (jsonRequestCountry.readyState === XMLHttpRequest.DONE) {
-        var JSONtextCountry = jsonRequestCountry.responseText;
-            countrycode = JSON.parse(JSONtextCountry);
-            // countryCode = jsonRequestCountry.responseText;
+        // var JSONtextCountry = jsonRequestCountry.responseText;
+        //     countrycode = JSON.parse(JSONtextCountry);
+            countryCode = jsonRequestCountry.responseText;
 
         }
       };
