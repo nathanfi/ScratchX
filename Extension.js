@@ -32,8 +32,10 @@
       var jsonRequestCountry = new XMLHttpRequest();
       jsonRequestCountry.onreadystatechange = function() {
         if (jsonRequestCountry.readyState === XMLHttpRequest.DONE) {
-        var JSONtextCountry = jsonRequestCountry.responseText;
-            countrycode = JSON.parse(JSONtextCountry);
+        // var JSONtextCountry = jsonRequestCountry.responseText;
+            // countrycode = JSON.parse(JSONtextCountry);
+            countryCode = jsonRequestCountry.responseText;
+
         }
       };
       var url_beg = 'http://api.geonames.org/countryCode?';
