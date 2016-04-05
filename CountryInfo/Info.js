@@ -21,6 +21,9 @@
           } else if (option == 'Sub-Region') {
             var sub_region = JSON.parse(JSONtext)[0].subregion;
             callback(sub_region);
+          } else if (option == 'Population') {
+            var population = JSON.parse(JSONtext)[0].population;
+            callback(population);
           }
         }
       };
@@ -33,7 +36,9 @@
     var descriptor = {
         blocks: [
           ['R', 'Capital of %s', 'getInfo', 'United States', 'Capital'],
-          ['R', 'Region of %s', 'getInfo', 'United States', 'Region']
+          ['R', 'Region of %s', 'getInfo', 'United States', 'Region'],
+          ['R', 'Sub-Region of %s', 'getInfo', 'United States', 'Sub-Region'],
+          ['R', 'Population of %s', 'getInfo', 'United States', 'Population']
         ]
     };
 
