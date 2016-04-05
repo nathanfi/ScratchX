@@ -8,6 +8,7 @@
     };
 
     var the_word = '';
+    var word_input = '';
     var languagecode = '';
     var lattitude = '47.03';
     var longitude = '10.2';
@@ -57,12 +58,13 @@
     };
 
     ext.execute = function(word, callback) {
-      var word_input = word;
+      word_input = word;
       ext.getCountry();
       ext.getLanguage();
       ext.translate();
       callback(the_word);
     };
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
