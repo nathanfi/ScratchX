@@ -8,7 +8,7 @@
     };
     var countrycode = '';
 
-    ext.getCountry = function() {
+    ext.getCountry = function(country) {
       var jsonRequestCountry = new XMLHttpRequest();
       jsonRequestCountry.onreadystatechange = function() {
         if (jsonRequestCountry.readyState === XMLHttpRequest.DONE) {
@@ -27,7 +27,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Display %m.country\'s capital', 'getCountry', 'Hello']
+          ['R', 'Display %m.country\'s capital', 'getCountry', 'England']
         ],
         menus: {
           country: ['Europe: %m.europe', 'Asia: %m.asia'],
