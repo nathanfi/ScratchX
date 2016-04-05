@@ -14,7 +14,7 @@
       jsonRequestCapital.onreadystatechange = function() {
         if (jsonRequestCapital.readyState === XMLHttpRequest.DONE) {
         var JSONtextCapital = jsonRequestCapital.responseText;
-            capital = JSON.parse(JSONtextCapital[0]).capital;
+            capital = JSON.parse(JSONtextCapital)[0].capital;
             callback(capital);
         }
       };
