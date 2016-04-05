@@ -6,30 +6,37 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    var countrycode = '';
-    var capital = '';
 
-    ext.getCapital = function(country, callback) {
-      var jsonRequestCapital = new XMLHttpRequest();
-      jsonRequestCapital.onreadystatechange = function() {
-        if (jsonRequestCapital.readyState === XMLHttpRequest.DONE) {
-        var JSONtextCapital = jsonRequestCapital.responseText;
-            capital = JSON.parse(JSONtextCapital)[0].capital;
+    ext.getInfo = function(country, option, callback) {
+      var jsonRequest = new XMLHttpRequest();
+      jsonRequest.onreadystatechange = function() {
+        if (jsonRequest.readyState === XMLHttpRequest.DONE) {
+        var JSONtext = jsonRequest.responseText;
+        if (option == 'Capital') {
+            var capital = JSON.parse(JSONtext)[0].capital;
             callback(capital);
+          } else if (option == 'Region') {
+            var region = JSON.parse(JSONtext)[0].region;
+            callback(region);
+          } else if (option == 'Sub-Region') {
+            var sub_region = JSON.parse(JSONtext)[0].subregion;
+            callback(sub_region);
+          }
         }
       };
       var url_beg = 'https://restcountries.eu/rest/v1/name/';
-      jsonRequestCapital.open("GET", url_beg + country);
+      jsonRequestCapital.open("GET", url_beg + country + '?fullText=true');
       jsonRequestCapital.send();
     };
 
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Display %s capital', 'getCapital', 'United States of America']
+          ['R', 'Capital of %s', 'getInfo', 'United States', 'Capital'],
+          ['R', 'Region of %s', 'getInfo', 'United States', 'Region']
         ]
     };
 
     // Register the extension
-    ScratchExtensions.register('Translate', descriptor, ext);
+    ScratchExtensions.register('Country Information', descriptor, ext);
 })({});
