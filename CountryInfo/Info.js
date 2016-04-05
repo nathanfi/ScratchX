@@ -18,7 +18,7 @@
             callback(capital);
         }
       };
-      var url_beg = 'https://restcountries.eu/rest/v1/name';
+      var url_beg = 'https://restcountries.eu/rest/v1/name/';
       jsonRequestCapital.open("GET", url_beg + country);
       jsonRequestCapital.send();
     };
