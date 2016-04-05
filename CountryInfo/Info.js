@@ -27,13 +27,8 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Display %m.country\'s capital', 'getCountry', 'England']
-        ],
-        menus: {
-          country: ['Europe: %m.europe', 'Asia: %m.asia'],
-          europe: ['England', 'France'],
-          asia: ['Israel, Russia']
-        }
+          ['R', 'Display %s capital', 'getCountry', 'England']
+        ]
     };
 
     // Register the extension
