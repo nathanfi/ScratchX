@@ -6,24 +6,26 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-
+    var capital = '';
+    var region = '';
+    var sub_region = '';
+    var population = '';
     ext.getInfo = function(country, option, callback) {
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext = jsonRequest.responseText;
-          // if (option == 'Capital') {
-            var capital = JSON.parse(JSONtext)[0].capital;
+          if (option == 'Capital') {
+            capital = JSON.parse(JSONtext)[0].capital;
             callback(capital);
-          // } else
-          if (option == 'Region') {
-            var region = JSON.parse(JSONtext)[0].region;
+          } else if (option == 'Region') {
+            region = JSON.parse(JSONtext)[0].region;
             callback(region);
           } else if (option == 'Sub-Region') {
-            var sub_region = JSON.parse(JSONtext)[0].subregion;
+            sub_region = JSON.parse(JSONtext)[0].subregion;
             callback(sub_region);
           } else if (option == 'Population') {
-            var population = JSON.parse(JSONtext)[0].population;
+            population = JSON.parse(JSONtext)[0].population;
             callback(population);
           }
         }
