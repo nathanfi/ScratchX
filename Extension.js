@@ -9,8 +9,8 @@
 
     var the_word = '';
     var languagecode = '';
-    var lattitude = 47.03;
-    var longitude = 10.2;
+    var lattitude = '47.03';
+    var longitude = '10.2';
     var countrycode = '';
 
     ext.translate = function() {
