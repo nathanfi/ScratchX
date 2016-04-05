@@ -11,11 +11,12 @@
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
-        var JSONtext = jsonRequest.responseText;
-        if (option == 'Capital') {
+          var JSONtext = jsonRequest.responseText;
+          // if (option == 'Capital') {
             var capital = JSON.parse(JSONtext)[0].capital;
             callback(capital);
-          } else if (option == 'Region') {
+          // } else
+          if (option == 'Region') {
             var region = JSON.parse(JSONtext)[0].region;
             callback(region);
           } else if (option == 'Sub-Region') {
