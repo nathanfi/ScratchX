@@ -11,7 +11,7 @@
     var sub_region = '';
     var population = '';
 
-    ext.getInfo = function(country, callback) {
+    ext.getInfo = function(country, option, callback) {
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
@@ -22,7 +22,7 @@
           } else if (option == 'Region') {
             region = JSON.parse(JSONtext)[0].region;
             callback(region);
-          } else if (option == 'Sub-Region') {
+          } else if (option == 'Subregion') {
             sub_region = JSON.parse(JSONtext)[0].subregion;
             callback(sub_region);
           } else if (option == 'Population') {
@@ -39,10 +39,10 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Capital of %s', 'getInfo', 'Britain'],
-          ['R', 'Region of %s', 'getInfo', 'Britain'],
-          ['R', 'Sub-Region of %s', 'getInfo', 'Britain'],
-          ['R', 'Population of %s', 'getInfo', 'Britain']
+          ['R', 'Capital of %s', 'getInfo', 'Britain', 'Capital'],
+          ['R', 'Region of %s', 'getInfo', 'Britain', 'Region'],
+          ['R', 'Sub-Region of %s', 'getInfo', 'Britain', 'Subregion'],
+          ['R', 'Population of %s', 'getInfo', 'Britain', "Population"]
         ]
     };
 
