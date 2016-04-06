@@ -27,14 +27,33 @@
                 answer = JSON.parse(JSONtext)[0].population;
               }
             } catch (error) {
-              answer = 'N/A';
+              var jsonRequest2 = new XMLHttpRequest();
+              jsonRequest2.onreadystatechange = function() {
+                if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
+                  var JSONtext2 = jsonRequest2.responseText;
+                  try {
+                    if (option == 'Capital') {
+                      answer = JSON.parse(JSONtext)[0].capital;
+                    } else if (option == 'Region') {
+                      answer = JSON.parse(JSONtext)[0].region;
+                    } else if (option == 'Subregion') {
+                      answer = JSON.parse(JSONtext)[0].subregion;
+                    } else if (option == 'Population') {
+                      answer = JSON.parse(JSONtext)[0].population;
+                    }
+                  } catch (error) {
+                    answer = 'N/A';
+                  }
+                }
+              };
+              //if doesn't work, add the stuff below (var url_beg)
             } finally {
               callback(answer);
             }
         }
       };
         var url_beg = 'https://restcountries.eu/rest/v1/name/';
-        jsonRequest.open("GET", url_beg + country + '?fullText=true');
+        jsonRequest.open("GET", url_beg + country + url_option);
         jsonRequest.send();
     };
     // Block and block menu descriptions
