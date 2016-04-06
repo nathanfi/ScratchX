@@ -9,7 +9,7 @@
     var answer = '';
 
     ext.getInfo = function(option, country_input, callback) {
-      var country = 'United States of America';
+      var country = country_input;
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
