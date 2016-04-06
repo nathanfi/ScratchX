@@ -7,7 +7,6 @@
         return {status: 2, msg: 'Ready'};
     };
     var answer = '';
-    var JSONtext;
     var option = '';
     var howMany = 1;
     var url_option = '?fullText=true';
