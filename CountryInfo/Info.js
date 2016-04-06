@@ -33,7 +33,7 @@
             }
         }
         var url_beg = 'https://restcountries.eu/rest/v1/name/';
-        jsonRequest.open("GET", url_beg + country + url_option);
+        jsonRequest.open("GET", url_beg + country + '?fullText=true');
         jsonRequest.send();
       };
     };
