@@ -14,20 +14,21 @@
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext = jsonRequest.responseText;
-          if (option == 'Capital') {
-            answer = JSON.parse(JSONtext)[0].capital;
-          } else if (option == 'Region') {
-            answer = JSON.parse(JSONtext)[0].region;
-          } else if (option == 'Subregion') {
-            answer = JSON.parse(JSONtext)[0].subregion;
-          } else if (option == 'Population') {
-            answer = JSON.parse(JSONtext)[0].population;
+          try {
+            if (option == 'Capital') {
+              answer = JSON.parse(JSONtext)[0].capital;
+            } else if (option == 'Region') {
+              answer = JSON.parse(JSONtext)[0].region;
+            } else if (option == 'Subregion') {
+              answer = JSON.parse(JSONtext)[0].subregion;
+            } else if (option == 'Population') {
+              answer = JSON.parse(JSONtext)[0].population;
+            }
+          } catch (error) {
+            answer = 'N/A';
+          } finally {
+            callback(answer);
           }
-          if (JSON.parse(JSONtext).message == 'Not Found') {
-            callback('N/A');
-          } else {
-          callback(answer);
-        }
         }
       };
       var url_beg = 'https://restcountries.eu/rest/v1/name/';
