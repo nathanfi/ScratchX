@@ -11,10 +11,10 @@
     ext.getInfo = function(option, country_input, callback) {
       var country = country_input;
       try {
-      var jsonRequest = new XMLHttpRequest();
-      jsonRequest.onreadystatechange = function() {
-        if (jsonRequest.readyState === XMLHttpRequest.DONE) {
-          var JSONtext = jsonRequest.responseText;
+        var jsonRequest = new XMLHttpRequest();
+        jsonRequest.onreadystatechange = function() {
+          if (jsonRequest.readyState === XMLHttpRequest.DONE) {
+            var JSONtext = jsonRequest.responseText;
             if (option == 'Capital') {
               answer = JSON.parse(JSONtext)[0].capital;
             } else if (option == 'Region') {
@@ -50,12 +50,12 @@
               var url_beg1 = 'https://restcountries.eu/rest/v1/name/';
               jsonRequest1.open("GET", url_beg1 + country);
               jsonRequest1.send();
-              callback(answer);
             } catch (error) {
               answer = 'N/A';
+            } finally {
               callback(answer);
             }
-          }
+        }
     };
 
     // Block and block menu descriptions
