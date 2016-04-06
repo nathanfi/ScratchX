@@ -10,8 +10,16 @@
 
     ext.getInfo = function(option, country_input, callback) {
       var country = country_input;
+      var jsonRequest = new XMLHttpRequest();
+      var url_beg = 'https://restcountries.eu/rest/v1/name/';
+      jsonRequest.open("GET", url_beg + country + '?fullText=true');
+      jsonRequest.send();
+
+      var jsonRequest1 = new XMLHttpRequest();
+      var url_beg1 = 'https://restcountries.eu/rest/v1/name/';
+      jsonRequest1.open("GET", url_beg1 + country);
+      jsonRequest1.send();
       try {
-        var jsonRequest = new XMLHttpRequest();
         jsonRequest.onreadystatechange = function() {
           if (jsonRequest.readyState === XMLHttpRequest.DONE) {
             var JSONtext = jsonRequest.responseText;
@@ -25,13 +33,9 @@
               answer = JSON.parse(JSONtext)[0].population;
             }
           }
-          var url_beg = 'https://restcountries.eu/rest/v1/name/';
-          jsonRequest.open("GET", url_beg + country + '?fullText=true');
-          jsonRequest.send();
         };
       } catch (error) {
             try {
-              var jsonRequest1 = new XMLHttpRequest();
               jsonRequest1.onreadystatechange = function() {
                 if (jsonRequest1.readyState === XMLHttpRequest.DONE) {
                   var JSONtext1 = jsonRequest1.responseText;
@@ -46,9 +50,6 @@
                   }
                 }
               };
-              var url_beg1 = 'https://restcountries.eu/rest/v1/name/';
-              jsonRequest1.open("GET", url_beg1 + country);
-              jsonRequest1.send();
             } catch (error) {
               answer = 'N/A';
             }
