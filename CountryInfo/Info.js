@@ -8,7 +8,7 @@
     };
     var answer = '';
 
-    ext.getInfo = function(country, option, callback) {
+    ext.getInfo = function(option, country, callback) {
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
@@ -33,7 +33,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', '%m.option of %s', 'getInfo', 'Britain', 'Capital']
+          ['R', '%m.option of %s', 'getInfo', 'Capital', 'Britain']
           // ,['R', 'Capital of %s', 'getInfo', 'Britain', 'Capital'],
           // ['R', 'Region of %s', 'getInfo', 'Britain', 'Region'],
           // ['R', 'Sub-Region of %s', 'getInfo', 'Britain', 'Subregion'],
