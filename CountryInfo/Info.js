@@ -10,11 +10,11 @@
 
     ext.getInfo = function(option, country_input, callback) {
       var country = country_input;
+      try {
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext = jsonRequest.responseText;
-          try {
             if (option == 'Capital') {
               answer = JSON.parse(JSONtext)[0].capital;
             } else if (option == 'Region') {
@@ -25,7 +25,12 @@
               answer = JSON.parse(JSONtext)[0].population;
             }
             callback(answer);
-          } catch (error) {
+          }
+          var url_beg = 'https://restcountries.eu/rest/v1/name/';
+          jsonRequest.open("GET", url_beg + country + '?fullText=true');
+          jsonRequest.send();
+        };
+      } catch (error) {
             try {
               var jsonRequest1 = new XMLHttpRequest();
               jsonRequest1.onreadystatechange = function() {
@@ -43,19 +48,14 @@
                 }
               };
               var url_beg1 = 'https://restcountries.eu/rest/v1/name/';
-              jsonRequest.open("GET", url_beg1 + country);
-              jsonRequest.send();
+              jsonRequest1.open("GET", url_beg1 + country);
+              jsonRequest1.send();
               callback(answer);
             } catch (error) {
               answer = 'N/A';
               callback(answer);
             }
           }
-        }
-      };
-      var url_beg = 'https://restcountries.eu/rest/v1/name/';
-      jsonRequest.open("GET", url_beg + country + '?fullText=true');
-      jsonRequest.send();
     };
 
     // Block and block menu descriptions
