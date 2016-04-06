@@ -18,7 +18,7 @@
       option = option_input;
       country = country_input;
       }
-      try {
+      // try {
         var jsonRequest = new XMLHttpRequest();
         jsonRequest.onreadystatechange = function() {
           if (jsonRequest.readyState === XMLHttpRequest.DONE) {
@@ -35,21 +35,21 @@
             answer = '';
             jsonRequest = undefined;
             callback(answer);
-          }
+          // }
         };
         var url_beg = 'https://restcountries.eu/rest/v1/name/';
         jsonRequest.open("GET", url_beg + country + url_option);
         jsonRequest.send();
 
-      } catch (error) {
-          if (howMany == 1) {
-            howMany++;
-            url_option = '';
-            ext.getInfo();
-          } else if (howMany == 2) {
-            answer = 'N/A';
-          }
-      }
+      } //catch (error) {
+      //     if (howMany == 1) {
+      //       howMany++;
+      //       url_option = '';
+      //       ext.getInfo();
+      //     } else if (howMany == 2) {
+      //       answer = 'N/A';
+      //     }
+      // }
     };
     // Block and block menu descriptions
     var descriptor = {
