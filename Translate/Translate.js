@@ -49,8 +49,8 @@
           ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'English','Spanish']
         ],
         menus: {
-          lang1: ['English', 'Spanish', 'Chinese', 'French', 'German', 'Italian', 'Japanese', 'Portuguese', 'Russian'],
-          lang2: ['English', 'Spanish', 'Chinese', 'French', 'German', 'Italian', 'Japanese', 'Portuguese', 'Russian']
+          lang1: ['English', 'Spanish', 'Chinese', 'French', 'German', 'Italian', 'Portuguese', 'Russian'],
+          lang2: ['English', 'Spanish', 'Chinese', 'French', 'German', 'Italian', 'Portuguese', 'Russian']
         }
     };
 
