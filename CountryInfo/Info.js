@@ -11,7 +11,7 @@
     var sub_region = '';
     var population = '';
 
-    ext.getInfo = function(country, option, callback) {
+    ext.getInfo = function(country, callback) {
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
@@ -41,9 +41,9 @@
     var descriptor = {
         blocks: [
           ['R', 'Capital of %s', 'getInfo', 'Britain'],
-          ['R', 'Region of %s', 'getInfo', 'Britain', 'Region'],
-          ['R', 'Sub-Region of %s', 'getInfo', 'Britain', 'Sub-Region'],
-          ['R', 'Population of %s', 'getInfo', 'Britain', 'Population']
+          ['R', 'Region of %s', 'getInfo', 'Britain'],
+          ['R', 'Sub-Region of %s', 'getInfo', 'Britain'],
+          ['R', 'Population of %s', 'getInfo', 'Britain']
         ]
     };
 
