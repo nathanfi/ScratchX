@@ -23,7 +23,11 @@
           } else if (option == 'Population') {
             answer = JSON.parse(JSONtext)[0].population;
           }
+          if (JSON.parse(JSONtext).message == 'Not Found') {
+            callback('N/A');
+          } else {
           callback(answer);
+        }
         }
       };
       var url_beg = 'https://restcountries.eu/rest/v1/name/';
@@ -34,7 +38,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', '%m.option of %s', 'getInfo', 'Capital', 'Britain']
+          ['R', '%m.option of %s', 'getInfo', 'Capital', 'Afghanistan']
           // ,['R', 'Capital of %s', 'getInfo', 'Britain', 'Capital'],
           // ['R', 'Region of %s', 'getInfo', 'Britain', 'Region'],
           // ['R', 'Sub-Region of %s', 'getInfo', 'Britain', 'Subregion'],
