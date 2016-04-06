@@ -25,7 +25,28 @@
               answer = JSON.parse(JSONtext)[0].population;
             }
           } catch (error) {
-            answer = 'N/A';
+            try {
+              var jsonRequest1 = new XMLHttpRequest();
+              jsonRequest1.onreadystatechange = function() {
+                if (jsonRequest1.readyState === XMLHttpRequest.DONE) {
+                  var JSONtext1 = jsonRequest1.responseText;
+                  if (option == 'Capital') {
+                    answer = JSON.parse(JSONtext1)[0].capital;
+                  } else if (option == 'Region') {
+                    answer = JSON.parse(JSONtext1)[0].region;
+                  } else if (option == 'Subregion') {
+                    answer = JSON.parse(JSONtext1)[0].subregion;
+                  } else if (option == 'Population') {
+                    answer = JSON.parse(JSONtext1)[0].population;
+                  }
+                }
+              };
+              var url_beg1 = 'https://restcountries.eu/rest/v1/name/';
+              jsonRequest.open("GET", url_beg1 + country);
+              jsonRequest.send();
+            } catch (error) {
+              answer = 'N/A';
+              }
           } finally {
             callback(answer);
           }
