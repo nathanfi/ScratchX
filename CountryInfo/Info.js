@@ -41,10 +41,6 @@
     var descriptor = {
         blocks: [
           ['R', '%m.option_input of %s', 'getInfo', 'Capital', 'Afghanistan']
-          // ,['R', 'Capital of %s', 'getInfo', 'Britain', 'Capital'],
-          // ['R', 'Region of %s', 'getInfo', 'Britain', 'Region'],
-          // ['R', 'Sub-Region of %s', 'getInfo', 'Britain', 'Subregion'],
-          // ['R', 'Population of %s', 'getInfo', 'Britain', 'Population']
         ],
         menus: {
           option_input: ['Capital', 'Region', 'Sub-Region', 'Population']
