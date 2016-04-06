@@ -44,25 +44,13 @@
       } catch (error) {
           if (howMany == 1) {
             howMany++;
+            url_option = '';
             ext.getInfo();
           } else if (howMany == 2) {
             answer = 'N/A';
           }
       }
     };
-    ext.nonFull = function() {
-      var jsonRequest1 = new XMLHttpRequest();
-      jsonRequest1.onreadystatechange = function() {
-        if (jsonRequest1.readyState === XMLHttpRequest.DONE) {
-          var JSONtext = jsonRequest1.responseText;
-          ext.parse();
-        }
-      };
-      var url_beg1 = 'https://restcountries.eu/rest/v1/name/';
-      jsonRequest1.open("GET", url_beg1 + country);
-      jsonRequest1.send();
-    };
-
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
