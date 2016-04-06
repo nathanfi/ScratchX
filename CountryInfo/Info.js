@@ -45,7 +45,6 @@
                     }
                   } catch (error) {
                     answer = 'N/A';
-
                   } finally {
                     jsonRequest2 = undefined;
                     JSONtext2 = undefined;
@@ -53,11 +52,12 @@
                 }
               };
               //if doesn't work, add the stuff below (var url_beg)
-            }
+            } finally {
               callback(answer);
               answer = '';
               jsonRequest = undefined;
               JSONtext = undefined;
+            }
           }
       };
         var url_beg = 'https://restcountries.eu/rest/v1/name/';
