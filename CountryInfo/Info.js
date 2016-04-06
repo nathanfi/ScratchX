@@ -24,6 +24,7 @@
             } else if (option == 'Population') {
               answer = JSON.parse(JSONtext)[0].population;
             }
+            callback(answer);
           } catch (error) {
             try {
               var jsonRequest1 = new XMLHttpRequest();
