@@ -32,6 +32,8 @@
             } else if (option == 'Population') {
               answer = JSON.parse(JSONtext)[0].population;
             }
+            answer = '';
+            jsonRequest = undefined;
             callback(answer);
           }
         };
