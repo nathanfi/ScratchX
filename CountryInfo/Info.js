@@ -27,6 +27,7 @@
                 answer = JSON.parse(JSONtext)[0].population;
               }
             } catch (error) {
+              url_option = '';
               var jsonRequest2 = new XMLHttpRequest();
               jsonRequest2.onreadystatechange = function() {
                 if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
