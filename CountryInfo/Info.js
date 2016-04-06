@@ -10,24 +10,26 @@
     var region = '';
     var sub_region = '';
     var population = '';
+
     ext.getInfo = function(country, option, callback) {
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext = jsonRequest.responseText;
-          if (option == 'Capital') {
+          // if (option == 'Capital') {
             capital = JSON.parse(JSONtext)[0].capital;
             callback(capital);
-          } else if (option == 'Region') {
-            region = JSON.parse(JSONtext)[0].region;
-            callback(region);
-          } else if (option == 'Sub-Region') {
-            sub_region = JSON.parse(JSONtext)[0].subregion;
-            callback(sub_region);
-          } else if (option == 'Population') {
-            population = JSON.parse(JSONtext)[0].population;
-            callback(population);
-          }
+          // } else
+          // if (option == 'Region') {
+          //   region = JSON.parse(JSONtext)[0].region;
+          //   callback(region);
+          // } else if (option == 'Sub-Region') {
+          //   sub_region = JSON.parse(JSONtext)[0].subregion;
+          //   callback(sub_region);
+          // } else if (option == 'Population') {
+          //   population = JSON.parse(JSONtext)[0].population;
+          //   callback(population);
+          // }
         }
       };
       var url_beg = 'https://restcountries.eu/rest/v1/name/';
@@ -38,10 +40,10 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Capital of %s', 'getInfo', 'United States', 'Capital'],
-          ['R', 'Region of %s', 'getInfo', 'United States', 'Region'],
-          ['R', 'Sub-Region of %s', 'getInfo', 'United States', 'Sub-Region'],
-          ['R', 'Population of %s', 'getInfo', 'United States', 'Population']
+          ['R', 'Capital of %s', 'getInfo', 'Britain', 'Capital'],
+          ['R', 'Region of %s', 'getInfo', 'Britain', 'Region'],
+          ['R', 'Sub-Region of %s', 'getInfo', 'Britain', 'Sub-Region'],
+          ['R', 'Population of %s', 'getInfo', 'Britain', 'Population']
         ]
     };
 
