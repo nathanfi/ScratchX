@@ -44,11 +44,11 @@
               var url_beg1 = 'https://restcountries.eu/rest/v1/name/';
               jsonRequest.open("GET", url_beg1 + country);
               jsonRequest.send();
+              callback(answer);
             } catch (error) {
               answer = 'N/A';
-              }
-          } finally {
-            callback(answer);
+              callback(answer);
+            }
           }
         }
       };
