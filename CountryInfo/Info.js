@@ -40,7 +40,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Capital of %s', 'getInfo', 'Britain', 'Capital'],
+          ['R', 'Capital of %s', 'getInfo', 'Britain'],
           ['R', 'Region of %s', 'getInfo', 'Britain', 'Region'],
           ['R', 'Sub-Region of %s', 'getInfo', 'Britain', 'Sub-Region'],
           ['R', 'Population of %s', 'getInfo', 'Britain', 'Population']
