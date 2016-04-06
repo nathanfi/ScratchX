@@ -42,7 +42,7 @@
           ['R', 'Capital of %s', 'getInfo', 'Britain', 'Capital'],
           ['R', 'Region of %s', 'getInfo', 'Britain', 'Region'],
           ['R', 'Sub-Region of %s', 'getInfo', 'Britain', 'Subregion'],
-          ['R', 'Population of %s', 'getInfo', 'Britain', "Population"]
+          ['R', 'Population of %s', 'getInfo', 'Britain', 'Population']
         ]
     };
 
