@@ -52,7 +52,7 @@
               //if doesn't work, add the stuff below (var url_beg)
             } finally {
               callback(answer);
-              answer = '';
+              // answer = '';
               jsonRequest = undefined;
               JSONtext2 = undefined;
               JSONtext = undefined;
