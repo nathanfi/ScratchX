@@ -17,6 +17,7 @@
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext = jsonRequest.responseText;
           try {
+            url_option = '?fullText=true';
               if (option == 'Capital') {
                 answer = JSON.parse(JSONtext)[0].capital;
               } else if (option == 'Region') {
@@ -53,7 +54,6 @@
               callback(answer);
               answer = '';
               jsonRequest = undefined;
-              jsonRequest2 = undefined;
               JSONtext2 = undefined;
               JSONtext = undefined;
             }
