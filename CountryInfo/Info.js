@@ -24,7 +24,6 @@
             } else if (option == 'Population') {
               answer = JSON.parse(JSONtext)[0].population;
             }
-            callback(answer);
           }
           var url_beg = 'https://restcountries.eu/rest/v1/name/';
           jsonRequest.open("GET", url_beg + country + '?fullText=true');
@@ -52,10 +51,10 @@
               jsonRequest1.send();
             } catch (error) {
               answer = 'N/A';
-            } finally {
-              callback(answer);
             }
-        }
+      } finally {
+          callback(answer);
+      }
     };
 
     // Block and block menu descriptions
