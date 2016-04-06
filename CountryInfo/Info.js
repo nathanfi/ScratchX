@@ -13,34 +13,34 @@
     var country = '';
 
     ext.getInfo = function(option_input, country_input, callback) {
-      if (howMany == 1) {
+      // if (howMany == 1) {
       option = option_input;
       country = country_input;
-      }
+      // }
       // try {
-        var jsonRequest = new XMLHttpRequest();
-        jsonRequest.onreadystatechange = function() {
-          if (jsonRequest.readyState === XMLHttpRequest.DONE) {
-            var JSONtext = jsonRequest.responseText;
-            if (option == 'Capital') {
-              answer = JSON.parse(JSONtext)[0].capital;
-            } else if (option == 'Region') {
-              answer = JSON.parse(JSONtext)[0].region;
-            } else if (option == 'Subregion') {
-              answer = JSON.parse(JSONtext)[0].subregion;
-            } else if (option == 'Population') {
-              answer = JSON.parse(JSONtext)[0].population;
-            }
-            callback(answer);
+      var jsonRequest = new XMLHttpRequest();
+      jsonRequest.onreadystatechange = function() {
+        if (jsonRequest.readyState === XMLHttpRequest.DONE) {
+          var JSONtext = jsonRequest.responseText;
+          if (option == 'Capital') {
+            answer = JSON.parse(JSONtext)[0].capital;
+          } else if (option == 'Region') {
+            answer = JSON.parse(JSONtext)[0].region;
+          } else if (option == 'Subregion') {
+            answer = JSON.parse(JSONtext)[0].subregion;
+          } else if (option == 'Population') {
+            answer = JSON.parse(JSONtext)[0].population;
+          }
+          callback(answer);
             // answer = '';
             // jsonRequest = undefined;
           // }
-        };
+        }
         var url_beg = 'https://restcountries.eu/rest/v1/name/';
         jsonRequest.open("GET", url_beg + country + url_option);
         jsonRequest.send();
 
-      } //catch (error) {
+      }; //catch (error) {
       //     if (howMany == 1) {
       //       howMany++;
       //       url_option = '';
