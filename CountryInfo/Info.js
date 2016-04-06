@@ -34,13 +34,13 @@
                   var JSONtext2 = jsonRequest2.responseText;
                   try {
                     if (option == 'Capital') {
-                      answer = JSON.parse(JSONtext)[0].capital;
+                      answer = JSON.parse(JSONtext2)[0].capital;
                     } else if (option == 'Region') {
-                      answer = JSON.parse(JSONtext)[0].region;
+                      answer = JSON.parse(JSONtext2)[0].region;
                     } else if (option == 'Subregion') {
-                      answer = JSON.parse(JSONtext)[0].subregion;
+                      answer = JSON.parse(JSONtext2)[0].subregion;
                     } else if (option == 'Population') {
-                      answer = JSON.parse(JSONtext)[0].population;
+                      answer = JSON.parse(JSONtext2)[0].population;
                     }
                   } catch (error) {
                     answer = 'N/A';
