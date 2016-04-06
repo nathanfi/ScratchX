@@ -32,9 +32,9 @@
             } else if (option == 'Population') {
               answer = JSON.parse(JSONtext)[0].population;
             }
-            answer = '';
-            jsonRequest = undefined;
             callback(answer);
+            // answer = '';
+            // jsonRequest = undefined;
           // }
         };
         var url_beg = 'https://restcountries.eu/rest/v1/name/';
