@@ -6,7 +6,7 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    var answer = '';
+    var answer;
     var url_option = '?fullText=true';
 
     ext.getInfo = function(option_input, country_input, callback) {
