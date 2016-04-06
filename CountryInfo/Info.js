@@ -45,16 +45,18 @@
                     }
                   } catch (error) {
                     answer = 'N/A';
+
+                  } finally {
                     jsonRequest2 = undefined;
+                    JSONtext2 = undefined;
                   }
                 }
               };
               //if doesn't work, add the stuff below (var url_beg)
             }
               callback(answer);
-              // answer = '';
+              answer = '';
               jsonRequest = undefined;
-              JSONtext2 = undefined;
               JSONtext = undefined;
           }
       };
