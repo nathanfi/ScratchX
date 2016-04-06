@@ -32,10 +32,10 @@
               callback(answer);
             }
         }
+      };
         var url_beg = 'https://restcountries.eu/rest/v1/name/';
         jsonRequest.open("GET", url_beg + country + '?fullText=true');
         jsonRequest.send();
-      };
     };
     // Block and block menu descriptions
     var descriptor = {
