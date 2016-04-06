@@ -6,10 +6,7 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    var capital = '';
-    var region = '';
-    var sub_region = '';
-    var population = '';
+    var answer = '';
 
     ext.getInfo = function(country, option, callback) {
       var jsonRequest = new XMLHttpRequest();
@@ -17,18 +14,15 @@
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext = jsonRequest.responseText;
           if (option == 'Capital') {
-            capital = JSON.parse(JSONtext)[0].capital;
-            callback(capital);
+            answer = JSON.parse(JSONtext)[0].capital;
           } else if (option == 'Region') {
-            region = JSON.parse(JSONtext)[0].region;
-            callback(region);
+            answer = JSON.parse(JSONtext)[0].region;
           } else if (option == 'Subregion') {
-            sub_region = JSON.parse(JSONtext)[0].subregion;
-            callback(sub_region);
+            answer = JSON.parse(JSONtext)[0].subregion;
           } else if (option == 'Population') {
-            population = JSON.parse(JSONtext)[0].population;
-            callback(population);
+            answer = JSON.parse(JSONtext)[0].population;
           }
+          callback(answer);
         }
       };
       var url_beg = 'https://restcountries.eu/rest/v1/name/';
@@ -39,11 +33,15 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Capital of %s', 'getInfo', 'Britain', 'Capital'],
-          ['R', 'Region of %s', 'getInfo', 'Britain', 'Region'],
-          ['R', 'Sub-Region of %s', 'getInfo', 'Britain', 'Subregion'],
-          ['R', 'Population of %s', 'getInfo', 'Britain', 'Population']
-        ]
+          ['R', '%m.option of %s', 'getInfo', 'Britain', 'Capital']
+          // ,['R', 'Capital of %s', 'getInfo', 'Britain', 'Capital'],
+          // ['R', 'Region of %s', 'getInfo', 'Britain', 'Region'],
+          // ['R', 'Sub-Region of %s', 'getInfo', 'Britain', 'Subregion'],
+          // ['R', 'Population of %s', 'getInfo', 'Britain', 'Population']
+        ],
+        menus: {
+          option: ['Capital', 'Region', 'Sub-Region', 'Population']
+        }
     };
 
     // Register the extension
