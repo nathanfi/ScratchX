@@ -18,7 +18,7 @@
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext = jsonRequest.responseText;
           url_option = '?fullText=true';
-          if (JSON.parse(JSONtext).message == "Not Found") {
+          if (JSON.parse(JSONtext).status == 404) {
             ext.partial2();
           } else if (option == 'Capital') {
               answer = JSON.parse(JSONtext)[0].capital;
@@ -41,7 +41,7 @@
       jsonRequest2.onreadystatechange = function() {
         if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
           var JSONtext2 = jsonRequest2.responseText;
-          if (JSON.parse(JSONtext2).message == "Not Found") {
+          if (JSON.parse(JSONtext2).status == 404) {
             answer = 'N/A';
           } else if (option == 'Capital') {
             answer = JSON.parse(JSONtext2)[0].capital;
