@@ -19,7 +19,7 @@
           var JSONtext = jsonRequest.responseText;
           url_option = '?fullText=true';
           if (JSON.parse(JSONtext).message == "Not Found") {
-            ext.partial2(callback);
+            ext.partial2();
           } else if (option == 'Capital') {
               answer = JSON.parse(JSONtext)[0].capital;
           } else if (option == 'Region') {
@@ -35,7 +35,7 @@
       jsonRequest.open("GET", url_beg + country + url_option);
       jsonRequest.send();
     };
-    ext.partial2 = function(callback) {
+    ext.partial2 = function() {
       url_option = '';
       var jsonRequest2 = new XMLHttpRequest();
       jsonRequest2.onreadystatechange = function() {
@@ -52,7 +52,6 @@
           } else if (option == 'Population') {
             answer = JSON.parse(JSONtext2)[0].population;
           }
-          callback(answer);
         }
       };
       jsonRequest2.open("GET", url_beg + country + url_option);
