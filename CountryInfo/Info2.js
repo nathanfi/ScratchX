@@ -19,9 +19,27 @@
           var JSONtext = jsonRequest.responseText;
           url_option = '?fullText=true';
           if (JSON.parse(JSONtext).status == 404) {
-            ext.partial2(country);
+            var jsonRequest2 = new XMLHttpRequest();
+            jsonRequest2.onreadystatechange = function() {
+              if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
+                var JSONtext2 = jsonRequest2.responseText;
+                if (JSON.parse(JSONtext2).status == 404) {
+                  answer = 'N/A';
+                } else if (option == 'Capital') {
+                  answer = JSON.parse(JSONtext2)[0].capital;
+                } else if (option == 'Region') {
+                  answer = JSON.parse(JSONtext2)[0].region;
+                } else if (option == 'Subregion') {
+                  answer = JSON.parse(JSONtext2)[0].subregion;
+                } else if (option == 'Population') {
+                  answer = JSON.parse(JSONtext2)[0].population;
+                }
+              }
+            };
+            jsonRequest2.open("GET", url_beg + country);
+            jsonRequest2.send();
           } else if (option == 'Capital') {
-              answer = JSON.parse(JSONtext)[0].capital;
+            answer = JSON.parse(JSONtext)[0].capital;
           } else if (option == 'Region') {
             answer = JSON.parse(JSONtext)[0].region;
           } else if (option == 'Subregion') {
@@ -35,30 +53,7 @@
       jsonRequest.open("GET", url_beg + country + url_option);
       jsonRequest.send();
     };
-    ext.partial2 = function(option_input, country_input) {
-      var country = country_input;
-      // url_option = '';
-      var option = option_input;
-      var jsonRequest2 = new XMLHttpRequest();
-      jsonRequest2.onreadystatechange = function() {
-        if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
-          var JSONtext2 = jsonRequest2.responseText;
-          if (JSON.parse(JSONtext2).status == 404) {
-            answer = 'N/A';
-          } else if (option == 'Capital') {
-            answer = JSON.parse(JSONtext2)[0].capital;
-          } else if (option == 'Region') {
-            answer = JSON.parse(JSONtext2)[0].region;
-          } else if (option == 'Subregion') {
-            answer = JSON.parse(JSONtext2)[0].subregion;
-          } else if (option == 'Population') {
-            answer = JSON.parse(JSONtext2)[0].population;
-          }
-        }
-      };
-      jsonRequest2.open("GET", url_beg + country);
-      jsonRequest2.send();
-    };
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
