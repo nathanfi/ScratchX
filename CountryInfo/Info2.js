@@ -8,7 +8,6 @@
     };
     var answer;
     var url_option = '?fullText=true';
-    var partial = false;
     var url_beg = 'https://restcountries.eu/rest/v1/name/';
 
     ext.getInfo = function(option_input, country_input, callback) {
@@ -30,9 +29,7 @@
           } else if (option == 'Population') {
             answer = JSON.parse(JSONtext)[0].population;
           }
-          if (partial === false) {
-            callback(answer);
-          }
+          callback(answer);
         }
       };
       jsonRequest.open("GET", url_beg + country + url_option);
@@ -56,7 +53,6 @@
             answer = JSON.parse(JSONtext2)[0].population;
           }
           callback(answer);
-          partial = true;
         }
       };
       jsonRequest2.open("GET", url_beg + country + url_option);
