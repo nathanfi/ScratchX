@@ -45,8 +45,8 @@
               } else if (option == 'Population') {
                 answer = JSON.parse(JSONtext)[0].population;
               }
+              callback(answer);
             }
-            callback(answer);
         };
       var url_beg = 'https://restcountries.eu/rest/v1/name/';
       jsonRequest.open("GET", url_beg + country + url_option);
