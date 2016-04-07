@@ -8,6 +8,7 @@
     };
     var answer;
     var url_option = '?fullText=true';
+    var partial = false;
 
     ext.getInfo = function(option_input, country_input, callback) {
       var option = option_input;
@@ -34,6 +35,8 @@
                   } else if (option == 'Population') {
                     answer = JSON.parse(JSONtext2)[0].population;
                   }
+                  callback(answer);
+                  partial = true;
                 }
               };
             } else if (option == 'Capital') {
@@ -45,7 +48,9 @@
               } else if (option == 'Population') {
                 answer = JSON.parse(JSONtext)[0].population;
               }
+              if (partial === false) {
               callback(answer);
+              }
             }
         };
       var url_beg = 'https://restcountries.eu/rest/v1/name/';
