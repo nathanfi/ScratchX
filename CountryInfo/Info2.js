@@ -55,7 +55,7 @@
           }
         }
       };
-      jsonRequest2.open("GET", url_beg + country + url_option);
+      jsonRequest2.open("GET", url_beg + country);
       jsonRequest2.send();
     };
     // Block and block menu descriptions
