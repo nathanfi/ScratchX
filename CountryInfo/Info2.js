@@ -9,6 +9,7 @@
     var answer;
     var url_option = '?fullText=true';
     var partial = false;
+    var url_beg = 'https://restcountries.eu/rest/v1/name/';
 
     ext.getInfo = function(option_input, country_input, callback) {
       var option = option_input;
@@ -34,7 +35,6 @@
           }
         }
       };
-      var url_beg = 'https://restcountries.eu/rest/v1/name/';
       jsonRequest.open("GET", url_beg + country + url_option);
       jsonRequest.send();
     };
