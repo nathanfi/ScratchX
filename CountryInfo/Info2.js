@@ -18,44 +18,49 @@
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext = jsonRequest.responseText;
           url_option = '?fullText=true';
-            if (JSON.parse(JSONtext).message == "Not Found") {
-              url_option = '';
-              var jsonRequest2 = new XMLHttpRequest();
-              jsonRequest2.onreadystatechange = function() {
-                if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
-                  var JSONtext2 = jsonRequest2.responseText;
-                  if (JSON.parse(JSONtext2).message == "Not Found") {
-                    answer = 'N/A';
-                  } else if (option == 'Capital') {
-                    answer = JSON.parse(JSONtext2)[0].capital;
-                  } else if (option == 'Region') {
-                    answer = JSON.parse(JSONtext2)[0].region;
-                  } else if (option == 'Subregion') {
-                    answer = JSON.parse(JSONtext2)[0].subregion;
-                  } else if (option == 'Population') {
-                    answer = JSON.parse(JSONtext2)[0].population;
-                  }
-                  callback(answer);
-                  partial = true;
-                }
-              };
-            } else if (option == 'Capital') {
-                answer = JSON.parse(JSONtext)[0].capital;
-              } else if (option == 'Region') {
-                answer = JSON.parse(JSONtext)[0].region;
-              } else if (option == 'Subregion') {
-                answer = JSON.parse(JSONtext)[0].subregion;
-              } else if (option == 'Population') {
-                answer = JSON.parse(JSONtext)[0].population;
-              }
-              if (partial === false) {
-              callback(answer);
-              }
-            }
-        };
+          if (JSON.parse(JSONtext).message == "Not Found") {
+            ext.partial2(callback);
+          } else if (option == 'Capital') {
+              answer = JSON.parse(JSONtext)[0].capital;
+          } else if (option == 'Region') {
+            answer = JSON.parse(JSONtext)[0].region;
+          } else if (option == 'Subregion') {
+            answer = JSON.parse(JSONtext)[0].subregion;
+          } else if (option == 'Population') {
+            answer = JSON.parse(JSONtext)[0].population;
+          }
+          if (partial === false) {
+            callback(answer);
+          }
+        }
+      };
       var url_beg = 'https://restcountries.eu/rest/v1/name/';
       jsonRequest.open("GET", url_beg + country + url_option);
       jsonRequest.send();
+    };
+    ext.partial2 = function(callback) {
+      url_option = '';
+      var jsonRequest2 = new XMLHttpRequest();
+      jsonRequest2.onreadystatechange = function() {
+        if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
+          var JSONtext2 = jsonRequest2.responseText;
+          if (JSON.parse(JSONtext2).message == "Not Found") {
+            answer = 'N/A';
+          } else if (option == 'Capital') {
+            answer = JSON.parse(JSONtext2)[0].capital;
+          } else if (option == 'Region') {
+            answer = JSON.parse(JSONtext2)[0].region;
+          } else if (option == 'Subregion') {
+            answer = JSON.parse(JSONtext2)[0].subregion;
+          } else if (option == 'Population') {
+            answer = JSON.parse(JSONtext2)[0].population;
+          }
+          callback(answer);
+          partial = true;
+        }
+      };
+      jsonRequest2.open("GET", url_beg + country + url_option);
+      jsonRequest2.send();
     };
     // Block and block menu descriptions
     var descriptor = {
