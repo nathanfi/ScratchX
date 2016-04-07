@@ -35,9 +35,10 @@
       jsonRequest.open("GET", url_beg + country + url_option);
       jsonRequest.send();
     };
-    ext.partial2 = function(country_input) {
+    ext.partial2 = function(option_input, country_input) {
       var country = country_input;
-      url_option = '';
+      // url_option = '';
+      var option = option_input;
       var jsonRequest2 = new XMLHttpRequest();
       jsonRequest2.onreadystatechange = function() {
         if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
