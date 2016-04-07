@@ -19,7 +19,7 @@
           var JSONtext = jsonRequest.responseText;
           url_option = '?fullText=true';
           if (JSON.parse(JSONtext).status == 404) {
-            ext.partial2();
+            ext.partial2(country);
           } else if (option == 'Capital') {
               answer = JSON.parse(JSONtext)[0].capital;
           } else if (option == 'Region') {
@@ -35,7 +35,8 @@
       jsonRequest.open("GET", url_beg + country + url_option);
       jsonRequest.send();
     };
-    ext.partial2 = function() {
+    ext.partial2 = function(country_input) {
+      var country = country_input;
       url_option = '';
       var jsonRequest2 = new XMLHttpRequest();
       jsonRequest2.onreadystatechange = function() {
