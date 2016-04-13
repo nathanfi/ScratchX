@@ -11,6 +11,8 @@
     var answer;
     var url_option = '?fullText=true';
     var url_beg = 'https://restcountries.eu/rest/v1/name/';
+    var didTwoWork;
+    var didOneWork;
 
     ext.getInfo = function(option_input, country_input, callback) {
       var option = option_input;
@@ -19,7 +21,9 @@
       jsonRequest2.onreadystatechange = function() {
         if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
           var JSONtext2 = jsonRequest2.responseText;
-          if (option == 'Capital') {
+          if (JSON.parse(JSONtext2).status == 404) {
+            didTwoWork = 'no';
+          } else if (option == 'Capital') {
             answer2 = JSON.parse(JSONtext2)[0].capital;
           } else if (option == 'Region') {
             answer2 = JSON.parse(JSONtext2)[0].region;
@@ -37,7 +41,9 @@
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext1 = jsonRequest.responseText;
           url_option = '?fullText=true';
-          if (option == 'Capital') {
+          if (JSON.parse(JSONtext1).status == 404) {
+            didOneWork = 'no';
+          } else if (option == 'Capital') {
             answer1 = JSON.parse(JSONtext1)[0].capital;
           } else if (option == 'Region') {
             answer1 = JSON.parse(JSONtext1)[0].region;
@@ -46,14 +52,16 @@
           } else if (option == 'Population') {
             answer1 = JSON.parse(JSONtext1)[0].population;
           }
-          if ((answer1 !== null && answer1 !== '') || JSON.parse(JSONtext1).status == 404) {
+          if (didOneWork === null) {
             answer = answer1;
-          } else if (JSON.parse(JSONtext2).status == 404) {
+          } else if (didTwoWork == 'no' && didOneWork == 'no') {
             answer = 'N/A';
           } else {
             answer = answer2;
           }
           callback(answer);
+          didOneWork = null;
+          didTwoWork = null;
         }
       };
       jsonRequest.open("GET", url_beg + country + url_option);
