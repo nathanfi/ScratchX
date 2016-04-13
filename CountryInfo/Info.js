@@ -75,6 +75,7 @@
         } else if (option == 'Population') {
           answer2 = JSON.parse(JSONtext2)[0].population;
         }
+        howManyTimesThrough++;
         ext.requestFull(option_input, country_input);
       }
     }
