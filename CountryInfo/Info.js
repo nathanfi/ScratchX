@@ -14,7 +14,7 @@
     var didTwoWork;
     var didOneWork;
 
-    ext.getInfo = function(option_input, country_input, callback) {
+    ext.getInfo = function(option_input, country_input) {
       var option = option_input;
       var country = country_input;
       var jsonRequest2 = new XMLHttpRequest();
@@ -38,7 +38,8 @@
       jsonRequest2.open("GET", url_beg + country);
       jsonRequest2.send();
     };
-    ext.requestFull = function(callback) {
+    ext.requestFull = function(option_input, country_input, callback) {
+      ext.getInfo(option_input, country_input);
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
@@ -73,7 +74,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', '%m.option_input of %s', 'getInfo', 'Capital', 'Afghanistan']
+          ['R', '%m.option_input of %s', 'requestFull', 'Capital', 'Afghanistan']
         ],
         menus: {
           option_input: ['Capital', 'Region', 'Sub-Region', 'Population']
