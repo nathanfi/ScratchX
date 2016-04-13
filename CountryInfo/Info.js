@@ -39,6 +39,8 @@
     };
     ext.requestFull = function(option_input, country_input, callback) {
       ext.getInfo(option_input, country_input);
+      var option = option_input;
+      var country = country_input;
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
