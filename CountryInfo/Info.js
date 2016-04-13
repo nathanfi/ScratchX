@@ -33,9 +33,12 @@
             answer2 = JSON.parse(JSONtext2)[0].population;
           }
         }
+        ext.requestFull(callback);
       };
       jsonRequest2.open("GET", url_beg + country);
       jsonRequest2.send();
+    };
+    ext.requestFull = function(callback) {
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
@@ -67,7 +70,6 @@
       jsonRequest.open("GET", url_beg + country + url_option);
       jsonRequest.send();
     };
-
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
