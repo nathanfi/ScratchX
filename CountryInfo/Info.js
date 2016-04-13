@@ -13,32 +13,21 @@
     var url_beg = 'https://restcountries.eu/rest/v1/name/';
     var didTwoWork;
     var didOneWork;
+    var howManyTimesThrough = 0;
 
     ext.getInfo = function(option_input, country_input) {
       var option = option_input;
       var country = country_input;
       var jsonRequest2 = new XMLHttpRequest();
-      jsonRequest2.onreadystatechange = function() {
-        if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
-          var JSONtext2 = jsonRequest2.responseText;
-          if (JSON.parse(JSONtext2).status == 404) {
-            didTwoWork = 'no';
-          } else if (option == 'Capital') {
-            answer2 = JSON.parse(JSONtext2)[0].capital;
-          } else if (option == 'Region') {
-            answer2 = JSON.parse(JSONtext2)[0].region;
-          } else if (option == 'Subregion') {
-            answer2 = JSON.parse(JSONtext2)[0].subregion;
-          } else if (option == 'Population') {
-            answer2 = JSON.parse(JSONtext2)[0].population;
-          }
-        }
-      };
+      jsonRequest2.onreadystatechange = theFunction(option_input, country_input);
       jsonRequest2.open("GET", url_beg + country);
       jsonRequest2.send();
     };
     ext.requestFull = function(option_input, country_input, callback) {
-      ext.getInfo(option_input, country_input);
+      if (howManyTimesThrough > 0) {
+        ext.getInfo(option_input, country_input);
+        setTimeout(function() {}, 2000);
+      }
       var option = option_input;
       var country = country_input;
       var jsonRequest = new XMLHttpRequest();
@@ -72,6 +61,23 @@
       jsonRequest.open("GET", url_beg + country + url_option);
       jsonRequest.send();
     };
+    function theFunction(option_input, country_input) {
+      if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
+        var JSONtext2 = jsonRequest2.responseText;
+        if (JSON.parse(JSONtext2).status == 404) {
+          didTwoWork = 'no';
+        } else if (option == 'Capital') {
+          answer2 = JSON.parse(JSONtext2)[0].capital;
+        } else if (option == 'Region') {
+          answer2 = JSON.parse(JSONtext2)[0].region;
+        } else if (option == 'Subregion') {
+          answer2 = JSON.parse(JSONtext2)[0].subregion;
+        } else if (option == 'Population') {
+          answer2 = JSON.parse(JSONtext2)[0].population;
+        }
+        ext.requestFull(option_input, country_input);
+      }
+    }
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
