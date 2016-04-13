@@ -33,7 +33,6 @@
             answer2 = JSON.parse(JSONtext2)[0].population;
           }
         }
-        ext.requestFull(callback);
       };
       jsonRequest2.open("GET", url_beg + country);
       jsonRequest2.send();
