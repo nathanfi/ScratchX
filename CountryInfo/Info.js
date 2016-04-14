@@ -59,7 +59,7 @@
           } else {
             answer = answer2;
           }
-          if(answer === null || answer === '') {
+          if(answer === null || answer === '' || answer == 'null') {
             ext.getInfo(option_input,country_input);
             didOneWork = null;
             didTwoWork = null;
