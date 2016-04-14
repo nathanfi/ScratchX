@@ -22,7 +22,6 @@
         var countrycode_uppercase = JSON.parse(JSONtextCountry);
           countryCode = countrycode_uppercase.toLowerCase();
             // countryCode = jsonRequestCountry.responseText;
-
         }
       };
       var url_beg = 'http://api.geonames.org/countryCode?';
