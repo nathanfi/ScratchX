@@ -59,9 +59,15 @@
           } else {
             answer = answer2;
           }
-          callback(answer);
-          didOneWork = null;
-          didTwoWork = null;
+          if(answer === null || answer === '') {
+            ext.getInfo(option_input,country_input);
+            didOneWork = null;
+            didTwoWork = null;
+          } else {
+            callback(answer);
+            didOneWork = null;
+            didTwoWork = null;
+          }
         }
       };
       jsonRequest.open("GET", url_beg + country + url_option);
