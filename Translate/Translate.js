@@ -27,7 +27,7 @@
         }
       }
     };
-    ext.translate = function(word, language2, language1, callback) {
+    ext.translate = function(word, language2, language1, option, callback) {
       var word_input = word;
       lang[0] = language1;
       lang[1] = language2;
@@ -40,14 +40,18 @@
             callback(the_word);
         }
       };
-      jsonRequest.open("GET", url_beg + "?key=" + key + "&text=" + word_input + "&lang=" + lan[0] + "-" + lan[1]);
+      if (option == 2){
+        jsonRequest.open("GET", url_beg + "?key=" + key + "&text=" + word_input + "&lang=" + lan[1]);
+      } else if (option == 1) {
+        jsonRequest.open("GET", url_beg + "?key=" + key + "&text=" + word_input + "&lang=" + lan[0] + "-" + lan[1]);
+      }
       jsonRequest.send();
     };
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Translate %s to %m.lang2', 'translate', 'Hello', 'Spanish', ''],
-          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'Spanish', 'English']
+          ['R', 'Translate %s to %m.lang2', 'translate', 'Hello', 'Spanish', '', 1],
+          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'Spanish', 'English', 2]
         ],
         menus: {
           lang1: ['English', 'Spanish', 'Chinese', 'French', 'German', 'Italian', 'Portuguese', 'Russian'],
