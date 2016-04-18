@@ -24,6 +24,7 @@
           case 'Russian':    lan[i] = 'ru'; break;
           case 'French':     lan[i] = 'fr'; break;
           case 'Portuguese': lan[i] = 'pt'; break;
+          default: the_word = 'That language is not supported.'; break;
         }
       }
     };
@@ -32,6 +33,9 @@
       lang[0] = language1;
       lang[1] = language2;
       ext.setupLanguages();
+      if (the_word !== '') {
+        callback(the_word);
+      } else {
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
@@ -46,12 +50,14 @@
         jsonRequest.open("GET", url_beg + "?key=" + key + "&text=" + word_input + "&lang=" + lan[0] + "-" + lan[1]);
       }
       jsonRequest.send();
+    }
     };
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Translate %s to %m.lang2', 'translate', 'Hello', 'Spanish', '', 1],
-          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'Spanish', 'English', 2]
+          ['R', 'Translate %s into %s', 'translate', 'Hello', 'Spanish', '', 1]
+          // ['R', 'Translate %s into %m.lang2', 'translate', 'Hello', 'Spanish', '', 1],
+          // ['R', 'Translate %s from %m.lang1 into %m.lang2', 'translate', 'Hello', 'Spanish', 'English', 2]
         ],
         menus: {
           lang1: ['English', 'Spanish', 'Chinese', 'French', 'German', 'Italian', 'Portuguese', 'Russian'],
