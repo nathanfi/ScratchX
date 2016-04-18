@@ -55,9 +55,9 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Translate %s into %s', 'translate', 'Hello', 'Spanish', '', 1]
-          // ['R', 'Translate %s into %m.lang2', 'translate', 'Hello', 'Spanish', '', 1],
-          // ['R', 'Translate %s from %m.lang1 into %m.lang2', 'translate', 'Hello', 'Spanish', 'English', 2]
+          ['R', 'Translate %s into %s', 'translate', 'Hello', 'Spanish', '', 2]
+          // ['R', 'Translate %s into %m.lang2', 'translate', 'Hello', 'Spanish', '', 2],
+          // ['R', 'Translate %s from %m.lang1 into %m.lang2', 'translate', 'Hello', 'Spanish', 'English', 1]
         ],
         menus: {
           lang1: ['English', 'Spanish', 'Chinese', 'French', 'German', 'Italian', 'Portuguese', 'Russian'],
