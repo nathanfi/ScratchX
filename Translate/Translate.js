@@ -27,7 +27,7 @@
         }
       }
     };
-    ext.translate = function(word, language1, language2, callback) {
+    ext.translate = function(word, language2, language1, callback) {
       var word_input = word;
       lang[0] = language1;
       lang[1] = language2;
@@ -46,7 +46,8 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'English','Spanish']
+          ['R', 'Translate %s to %m.lang2', 'translate', 'Spanish',''],
+          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'translate', 'Hello', 'Spanish', 'English']
         ],
         menus: {
           lang1: ['English', 'Spanish', 'Chinese', 'French', 'German', 'Italian', 'Portuguese', 'Russian'],
