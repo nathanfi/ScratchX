@@ -11,9 +11,6 @@
     var the_word = '';
     var lang = '';
     var lan = '';
-    String.prototype.toProperCase = function () {
-      return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-    };
     ext.setupLanguages = function() {
         switch(lang) {
           case 'American':   lan = 'en'; break;
@@ -25,13 +22,21 @@
           case 'Russian':    lan = 'ru'; break;
           case 'French':     lan = 'fr'; break;
           case 'Portuguese': lan = 'pt'; break;
+          case 'american':   lan = 'en'; break;
+          case 'english':    lan = 'en'; break;
+          case 'spanish':    lan = 'es'; break;
+          case 'chinese':    lan = 'zh'; break;
+          case 'italian':    lan = 'it'; break;
+          case 'german':     lan = 'de'; break;
+          case 'russian':    lan = 'ru'; break;
+          case 'french':     lan = 'fr'; break;
+          case 'portuguese': lan = 'pt'; break;
           default: the_word = 'That language is not supported.';// break;
         }
     };
     ext.translate = function(word, language, callback) {
       var word_input = word;
       lang = language;
-      lang.toProperCase();
       ext.setupLanguages();
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
