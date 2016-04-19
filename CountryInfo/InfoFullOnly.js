@@ -8,45 +8,41 @@
         return {status: 2, msg: 'Ready'};
     };
     var answer1;
-    var answer2;
     var answer;
     var url_option = '?fullText=true';
     var url_beg = 'https://restcountries.eu/rest/v1/name/';
-    var didTwoWork;
     var didOneWork;
 
     ext.getInfo = function(option_input, country_input, callback) {
       var option = option_input;
       var country = country_input;
+      if (country == 'Britain') {
+        country = 'Great Britain';
+      }
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext1 = jsonRequest.responseText;
           if (option == 'Capital') {
             answer1 = JSON.parse(JSONtext1)[0].capital;
+            didOneWork = 'yes';
           } else if (option == 'Region') {
             answer1 = JSON.parse(JSONtext1)[0].region;
+            didOneWork = 'yes';
           } else if (option == 'Subregion') {
             answer1 = JSON.parse(JSONtext1)[0].subregion;
+            didOneWork = 'yes';
           } else if (option == 'Population') {
             answer1 = JSON.parse(JSONtext1)[0].population;
+            didOneWork = 'yes';
           }
-          if (didOneWork === null) {
+          if (didOneWork == 'yes') {
             answer = answer1;
-          } else if (didTwoWork == 'no' && didOneWork == 'no') {
+          } else {
             answer = 'N/A';
-          } else {
-            answer = answer2;
           }
-          if(answer === null || answer === '' || answer == 'null') {
-            ext.getInfo(option_input,country_input);
-            didOneWork = null;
-            didTwoWork = null;
-          } else {
-            callback(answer);
-            didOneWork = null;
-            didTwoWork = null;
-          }
+          callback(answer);
+          didOneWork = null;
         }
       };
       jsonRequest.open("GET", url_beg + country + url_option);
