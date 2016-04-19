@@ -44,7 +44,7 @@
             callback(the_word);
         }
       };
-      if (option == 2){
+      if (option == '2'){
         jsonRequest.open("GET", url_beg + "?key=" + key + "&text=" + word_input + "&lang=" + lan[1]);
       } else if (option == 1) {
         jsonRequest.open("GET", url_beg + "?key=" + key + "&text=" + word_input + "&lang=" + lan[0] + "-" + lan[1]);
@@ -55,7 +55,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Translate %s into %s', 'translate', 'Hello', 'Spanish', '', 2]
+          ['R', 'Translate %s into %s', 'translate', 'Hello', 'Spanish', '', '2']
           // ['R', 'Translate %s into %m.lang2', 'translate', 'Hello', 'Spanish', '', 2],
           // ['R', 'Translate %s from %m.lang1 into %m.lang2', 'translate', 'Hello', 'Spanish', 'English', 1]
         ],
