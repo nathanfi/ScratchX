@@ -21,7 +21,7 @@
           case 'Russian':    lan = 'ru'; break;
           case 'French':     lan = 'fr'; break;
           case 'Portuguese': lan = 'pt'; break;
-          default: the_word = 'That language is not supported.'; break;
+          default: the_word = 'That language is not supported.';// break;
         }
     };
     ext.translate = function(word, language, callback) {
