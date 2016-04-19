@@ -22,6 +22,7 @@
           case 'Russian':    lan = 'ru'; break;
           case 'French':     lan = 'fr'; break;
           case 'Portuguese': lan = 'pt'; break;
+          case 'Greek':      lan = 'el'; break;
           case 'american':   lan = 'en'; break;
           case 'english':    lan = 'en'; break;
           case 'spanish':    lan = 'es'; break;
@@ -31,6 +32,7 @@
           case 'russian':    lan = 'ru'; break;
           case 'french':     lan = 'fr'; break;
           case 'portuguese': lan = 'pt'; break;
+          case 'greek':      lan = 'el'; break;
           default: the_word = 'That language is not supported.';// break;
         }
     };
