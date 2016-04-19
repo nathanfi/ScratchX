@@ -36,6 +36,10 @@
             the_word = JSON.parse(JSONtext).text[0];
           }
           callback(the_word);
+          the_word = null;
+          lang = null;
+          lan = null;
+          word_input = null;
         }
       };
       jsonRequest.open("GET", url_beg + "?key=" + key + "&text=" + word_input + "&lang=" + lan);
