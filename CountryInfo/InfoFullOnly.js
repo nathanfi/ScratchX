@@ -42,6 +42,7 @@
             answer = 'N/A';
           }
           callback(answer);
+          answer = '';
           didOneWork = null;
         }
       };
