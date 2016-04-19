@@ -13,6 +13,7 @@
     var lan = '';
     ext.setupLanguages = function() {
         switch(lang) {
+          case 'American':   lan = 'en'; break;
           case 'English':    lan = 'en'; break;
           case 'Spanish':    lan = 'es'; break;
           case 'Chinese':    lan = 'zh'; break;
