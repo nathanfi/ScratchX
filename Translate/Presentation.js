@@ -37,9 +37,9 @@
           }
           callback(the_word);
           the_word = '';
-          lang = null;
-          lan = null;
-          word_input = null;
+          // lang = null;
+          // lan = null;
+          // word_input = null;
         }
       };
       jsonRequest.open("GET", url_beg + "?key=" + key + "&text=" + word_input + "&lang=" + lan);
