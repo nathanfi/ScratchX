@@ -54,7 +54,7 @@
           ['R', '%m.option_input of %s', 'getInfo', 'Capital', 'Afghanistan']
         ],
         menus: {
-          option_input: ['Capital', 'Region', 'Sub-Region', 'Population']
+          option_input: ['Capital', 'Region', 'Population']
         }
     };
 
