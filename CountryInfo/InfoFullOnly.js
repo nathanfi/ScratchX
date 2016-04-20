@@ -29,9 +29,6 @@
           } else if (option == 'Region') {
             answer1 = JSON.parse(JSONtext1)[0].region;
             didOneWork = 'yes';
-          } else if (option == 'Subregion') {
-            answer1 = JSON.parse(JSONtext1)[0].subregion;
-            didOneWork = 'yes';
           } else if (option == 'Population') {
             answer1 = JSON.parse(JSONtext1)[0].population;
             didOneWork = 'yes';
