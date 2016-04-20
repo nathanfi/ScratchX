@@ -44,6 +44,7 @@
           callback(answer);
           answer = '';
           didOneWork = null;
+          answer1 = '';
         }
       };
       jsonRequest.open("GET", url_beg + country + url_option);
