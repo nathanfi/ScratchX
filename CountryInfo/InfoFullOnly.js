@@ -38,7 +38,7 @@
                 answer3.splice(i, 0, ',');
               }
               for (i = 0; i < answer3.length; i++) {
-                answer1 = concat(answer1, answer3[i]);
+                answer1.concat(answer1, answer3[i]);
               }
             }
           } catch (e) {
