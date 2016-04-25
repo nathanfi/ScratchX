@@ -1,67 +1,75 @@
 (function(ext) {
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
-
     // Status reporting code
     // Use this to report missing hardware, plugin or unsupported browser
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    var url_beg = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
-    //var word = 'Hello';
-    // var lang1 = "en";
-    // var lang2 = "es";
-    var lan1;
-    var lan2;
-    ext.setupLanguages = function(lang1,lang2) {
-      if (lang1 == 'English') {
-        lan1 = 'en';
-      } else if (lang1 == 'Spanish') {
-        lan1 = 'es';
-      } else if (lang1 == 'Italian') {
-        lan1 = 'it';
-      } else if (lang1 == 'Chinese') {
-        lan1 = 'zh';
-      } else if (lang1 == 'German') {
-        lan1 = 'de';
-      } else if (lang1 == 'Russian') {
-        lan1 = 'ru';
-      } else if (lang1 == 'French') {
-        lan1 = 'fr';
-      }
-      if (lang2 == 'English') {
-        lan2 = 'en';
-      } else if (lang2 == 'Spanish') {
-        lan2 = 'es';
-      } else if (lang2 == 'Italian') {
-        lan2 = 'it';
-      } else if (lang2 == 'Chinese') {
-        lan2 = 'zh';
-      } else if (lang2 == 'German') {
-        lan2 = 'de';
-      } else if (lang2 == 'Russian') {
-        lan2 = 'ru';
-      } else if (lang2 == 'French') {
-        lan2 = 'fr';
-      }
-    };
-    ext.getJSON = function(word, lang1, lang2) {
-      setupLanguages(lang1,lang2);
-      loadJSON(url_beg + "&text=" + word + "&lang=" + lan1 + "-" + lan2, getData);
+
+    var the_word = '';
+    var word_input = '';
+    var languagecode = '';
+    var latitude = '47.03';
+    var longitude = '10.2';
+    var countrycode = '';
+
+    ext.getCountry = function() {
+      var jsonRequestCountry = new XMLHttpRequest();
+      jsonRequestCountry.onreadystatechange = function() {
+        if (jsonRequestCountry.readyState === XMLHttpRequest.DONE) {
+        var JSONtextCountry = jsonRequestCountry.responseText;
+        var countrycode_uppercase = JSON.parse(JSONtextCountry);
+          countryCode = countrycode_uppercase.toLowerCase();
+            // countryCode = jsonRequestCountry.responseText;
+        }
+      };
+      var url_beg = 'http://api.geonames.org/countryCode?';
+      jsonRequestCountry.open("GET", url_beg + 'lat=' + latitude + '&lng=' + longitude + '&username=nathanfi');
+      jsonRequestCountry.send();
     };
 
-    ext.getData = function(data, callback) {
-      callback(data.text);
+    ext.getLanguage = function() {
+      var jsonRequestLanguage = new XMLHttpRequest();
+      jsonRequestLanguage.onreadystatechange = function() {
+        if (jsonRequestLanguage.readyState === XMLHttpRequest.DONE) {
+        var JSONtextLanguage = jsonRequestLanguage.responseText;
+            languagecode = JSON.parse(JSONtextLanguage).languages[0];
+        }
+      };
+      var url_beg = 'https://restcountries.eu/rest/v1/alpha/';
+      jsonRequestLanguage.open("GET", url_beg + countrycode);
+      jsonRequestLanguage.send();
     };
+
+    ext.translate = function() {
+      var jsonRequestTranslate = new XMLHttpRequest();
+      jsonRequestTranslate.onreadystatechange = function() {
+        if (jsonRequestTranslate.readyState === XMLHttpRequest.DONE) {
+        var JSONtext = jsonRequestTranslate.responseText;
+            the_word = JSON.parse(JSONtext).text[0];
+            // callback(the_word);
+        }
+      };
+      var url_beg = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
+      var key = "trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
+      jsonRequestTranslate.open("GET", url_beg + "key=" + key + "&text=" + word_input + "&lang=" + languagecode);
+      jsonRequestTranslate.send();
+    };
+
+    ext.execute = function(word, callback) {
+      word_input = word;
+      ext.getCountry();
+      ext.getLanguage();
+      ext.translate();
+      callback(the_word);
+    };
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Translate %s from %m.lang1 to %m.lang2', 'getJSON', 'Hello', 'English','Spanish']
-        ],
-        menus: {
-          lang1: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian'],
-          lang2: ['English', 'Spanish', 'Chinese', 'Russian', 'French', 'German', 'Italian'],
-        }
+          ['R', 'Display %s in the local language', 'execute', 'Hello']
+        ]
     };
 
     // Register the extension
