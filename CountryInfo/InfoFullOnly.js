@@ -35,7 +35,7 @@
               didOneWork = 'yes';
             }
           } catch (e) {
-            didOneWork = 'no'
+            didOneWork = 'no';
           }
           if (didOneWork == 'yes') {
             answer = answer1;
