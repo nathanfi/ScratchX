@@ -23,15 +23,19 @@
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext1 = jsonRequest.responseText;
-          if (option == 'Capital') {
-            answer1 = JSON.parse(JSONtext1)[0].capital;
-            didOneWork = 'yes';
-          } else if (option == 'Region') {
-            answer1 = JSON.parse(JSONtext1)[0].region;
-            didOneWork = 'yes';
-          } else if (option == 'Population') {
-            answer1 = JSON.parse(JSONtext1)[0].population;
-            didOneWork = 'yes';
+          try {
+            if (option == 'Capital') {
+              answer1 = JSON.parse(JSONtext1)[0].capital;
+              didOneWork = 'yes';
+            } else if (option == 'Region') {
+              answer1 = JSON.parse(JSONtext1)[0].region;
+              didOneWork = 'yes';
+            } else if (option == 'Population') {
+              answer1 = JSON.parse(JSONtext1)[0].population;
+              didOneWork = 'yes';
+            }
+          } catch (e) {
+            didOneWork = 'no'
           }
           if (didOneWork == 'yes') {
             answer = answer1;
