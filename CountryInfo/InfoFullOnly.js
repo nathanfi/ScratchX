@@ -31,8 +31,15 @@
               answer1 = JSON.parse(JSONtext1)[0].region;
               didOneWork = 'yes';
             } else if (option == 'Population') {
-              answer1 = JSON.parse(JSONtext1)[0].population;
+              var answer2 = str(JSON.parse(JSONtext1)[0].population);
               didOneWork = 'yes';
+              var answer3 = answer2.split('');
+              for (i=answer3.length-3; i >=0; i=i-3) {
+                answer3.splice(i, 0, ',');
+              }
+              for (i = 0; i < answer3.length; i++) {
+                answer1 = concat(answer1, answer3[i]);
+              }
             }
           } catch (e) {
             didOneWork = 'no';
