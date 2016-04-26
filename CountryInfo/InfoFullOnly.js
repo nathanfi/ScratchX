@@ -37,10 +37,9 @@
               for (i=answer3.length-3; i >0; i=i-3) {
                 answer3.splice(i, 0, ',');
               }
-              answer1 = answer3[0];
-              // for (i = 0; i < answer3.length; i++) {
-              //   answer1.concat(answer3[i]);
-              // }
+              for (i = 0; i < answer3.length; i++) {
+                answer1 = answer1.concat(answer3[i]);
+              }
               didOneWork = 'yes';
             }
           } catch (e) {
