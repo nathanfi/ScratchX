@@ -39,8 +39,9 @@
               }
               var answer4 = '';
               for (i = 0; i < answer3.length; i++) {
-                answer1.concat(answer3[i]);
+                answer4.concat(answer1, answer3[i]);
               }
+              answer1 = answer4;
             }
           } catch (e) {
             didOneWork = 'no';
