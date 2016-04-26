@@ -7,7 +7,7 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    var answer1;
+    var answer1 = '';
     var answer;
     var url_option = '?fullText=true';
     var url_beg = 'https://restcountries.eu/rest/v1/name/';
@@ -37,8 +37,9 @@
               for (i=answer3.length-3; i >=0; i=i-3) {
                 answer3.splice(i, 0, ',');
               }
+              var answer4 = '';
               for (i = 0; i < answer3.length; i++) {
-                answer1.concat(answer1, answer3[i]);
+                answer1.concat(answer3[i]);
               }
             }
           } catch (e) {
