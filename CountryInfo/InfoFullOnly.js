@@ -47,6 +47,7 @@
           }
           if (didOneWork == 'yes') {
             answer = answer1;
+            answer1 = '';
           } else {
             answer = 'N/A';
           }
