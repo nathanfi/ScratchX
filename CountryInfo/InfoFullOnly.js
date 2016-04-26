@@ -31,7 +31,7 @@
               answer1 = JSON.parse(JSONtext1)[0].region;
               didOneWork = 'yes';
             } else if (option == 'Population') {
-              var answer2 = str(JSON.parse(JSONtext1)[0].population);
+              var answer2 = string(JSON.parse(JSONtext1)[0].population);
               didOneWork = 'yes';
               answer1 = answer2;
               /*var answer3 = answer2.split('');
