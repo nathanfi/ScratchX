@@ -34,18 +34,17 @@
               var stuffsucks = JSON.parse(JSONtext1)[0].population;
               var answer2 = stuffsucks.toString();
               didOneWork = 'yes';
-              answer1 = answer2;
-              /*var answer3 = answer2.split('');
+              var answer3 = answer2.split('');
               for (i=answer3.length-3; i >0; i=i-3) {
                 answer3.splice(i, 0, ',');
               }
               var answer4 = '';
               for (i = 0; i < answer3.length; i++) {
-                answer1.concat(answer3[i]);*/
+                answer1.concat(answer3[i]);
                 // answer1 = answer4;
               }
               // answer1 = answer4;
-            // }
+            }
           } catch (e) {
             didOneWork = 'no';
           }
