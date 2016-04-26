@@ -39,7 +39,7 @@
               }
               var answer4 = '';
               for (i = 0; i < answer3.length; i++) {
-                answer4.concat(answer1, answer3[i]);
+                answer4.concat(answer4, answer3[i]);
               }
               answer1 = answer4;
             }
