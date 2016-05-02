@@ -80,6 +80,9 @@
                 } else if (didTwoWork == 'no') {
                   answer = 'N/A';
                 }
+                if (answer === '') {
+                  answer = 'This country has no capital';
+                }
                 callback(answer);
                 answer = '';
                 didOneWork = 'no';
@@ -90,6 +93,9 @@
             jsonRequest2.send();
           }
           if (didOneWork == 'yes') {
+            if (answer === '') {
+              answer = 'This country has no capital';
+            }
             callback(answer);
             answer = '';
             didOneWork = 'no';
