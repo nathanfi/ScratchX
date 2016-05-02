@@ -70,7 +70,7 @@ b// TODO: MAKE A GAME WHERE YOU HAVE TO GUESS THE CAPITAL
       if (country == 'Britain') {
         country = 'Great Britain';
       }
-      jsonRequest = new XMLHttpRequest();
+      var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           JSONtext1 = jsonRequest.responseText;
@@ -79,7 +79,7 @@ b// TODO: MAKE A GAME WHERE YOU HAVE TO GUESS THE CAPITAL
             answer = answer1;
             answer1 = '';
           } else {
-            jsonRequest2 = new XMLHttpRequest();
+            var jsonRequest2 = new XMLHttpRequest();
             jsonRequest2.onreadystatechange = function() {
               if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
                 JSONtext2 = jsonRequest2.responseText;
