@@ -104,6 +104,7 @@ b// TODO: MAKE A GAME WHERE YOU HAVE TO GUESS THE CAPITAL
       };
       jsonRequest.open("GET", url_beg + country + url_option);
       jsonRequest.send();
+      callback(answer);
     };
 
     // Block and block menu descriptions
