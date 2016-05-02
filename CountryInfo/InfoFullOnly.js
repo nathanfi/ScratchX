@@ -13,56 +13,6 @@ b// TODO: MAKE A GAME WHERE YOU HAVE TO GUESS THE CAPITAL
     var url_beg = 'https://restcountries.eu/rest/v1/name/';
     var didOneWork;
     var didTwoWork;
-    var JSONtext1;
-    var JSONtext2;
-    ext.gettheData = function() {
-      try {
-        if (option == 'Capital') {
-          answer1 = JSON.parse(JSONtext1)[0].capital;
-          didOneWork = 'yes';
-        } else if (option == 'Region') {
-          answer1 = JSON.parse(JSONtext1)[0].region;
-          didOneWork = 'yes';
-        } else if (option == 'Population') {
-          var stuffsucks = JSON.parse(JSONtext1)[0].population;
-          var answer2 = stuffsucks.toString();
-          var answer3 = answer2.split('');
-          for (i=answer3.length-3; i >0; i=i-3) {
-            answer3.splice(i, 0, ',');
-          }
-          for (i = 0; i < answer3.length; i++) {
-            answer1 = answer1.concat(answer3[i]);
-          }
-          didOneWork = 'yes';
-        }
-      } catch (e) {
-        didOneWork = 'no';
-      }
-    };
-    ext.gettheData2 = function() {
-      try {
-        if (option == 'Capital') {
-          answer1 = JSON.parse(JSONtext2)[0].capital;
-          didTwoWork = 'yes';
-        } else if (option == 'Region') {
-          answer1 = JSON.parse(JSONtext2)[0].region;
-          didTwoWork = 'yes';
-        } else if (option == 'Population') {
-          var stuffsucks = JSON.parse(JSONtext2)[0].population;
-          var answer2 = stuffsucks.toString();
-          var answer3 = answer2.split('');
-          for (i=answer3.length-3; i >0; i=i-3) {
-            answer3.splice(i, 0, ',');
-          }
-          for (i = 0; i < answer3.length; i++) {
-            answer1 = answer1.concat(answer3[i]);
-          }
-          didTwoWork = 'yes';
-        }
-      } catch (e) {
-        didTwoWork = 'no';
-      }
-    };
 
     ext.getInfo = function(option_input, country_input, callback) {
       var option = option_input;
@@ -73,8 +23,29 @@ b// TODO: MAKE A GAME WHERE YOU HAVE TO GUESS THE CAPITAL
       var jsonRequest = new XMLHttpRequest();
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
-          JSONtext1 = jsonRequest.responseText;
-          ext.gettheData();
+          var JSONtext1 = jsonRequest.responseText;
+          try {
+            if (option == 'Capital') {
+              answer1 = JSON.parse(JSONtext1)[0].capital;
+              didOneWork = 'yes';
+            } else if (option == 'Region') {
+              answer1 = JSON.parse(JSONtext1)[0].region;
+              didOneWork = 'yes';
+            } else if (option == 'Population') {
+              var stuffsucks = JSON.parse(JSONtext1)[0].population;
+              var answer2 = stuffsucks.toString();
+              var answer3 = answer2.split('');
+              for (i=answer3.length-3; i >0; i=i-3) {
+                answer3.splice(i, 0, ',');
+              }
+              for (i = 0; i < answer3.length; i++) {
+                answer1 = answer1.concat(answer3[i]);
+              }
+              didOneWork = 'yes';
+            }
+          } catch (e) {
+            didOneWork = 'no';
+          }
           if (didOneWork == 'yes') {
             answer = answer1;
             answer1 = '';
@@ -82,8 +53,29 @@ b// TODO: MAKE A GAME WHERE YOU HAVE TO GUESS THE CAPITAL
             var jsonRequest2 = new XMLHttpRequest();
             jsonRequest2.onreadystatechange = function() {
               if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
-                JSONtext2 = jsonRequest2.responseText;
-                ext.gettheData2();
+                var JSONtext2 = jsonRequest2.responseText;
+                try {
+                  if (option == 'Capital') {
+                    answer1 = JSON.parse(JSONtext2)[0].capital;
+                    didTwoWork = 'yes';
+                  } else if (option == 'Region') {
+                    answer1 = JSON.parse(JSONtext2)[0].region;
+                    didTwoWork = 'yes';
+                  } else if (option == 'Population') {
+                    var stuffsucks = JSON.parse(JSONtext2)[0].population;
+                    var answer2 = stuffsucks.toString();
+                    var answer3 = answer2.split('');
+                    for (i=answer3.length-3; i >0; i=i-3) {
+                      answer3.splice(i, 0, ',');
+                    }
+                    for (i = 0; i < answer3.length; i++) {
+                      answer1 = answer1.concat(answer3[i]);
+                    }
+                    didTwoWork = 'yes';
+                  }
+                } catch (e) {
+                  didTwoWork = 'no';
+                }
                 if (didOneWork == 'no' && didTwoWork == 'yes') {
                   answer = answer1;
                   callback(answer);
