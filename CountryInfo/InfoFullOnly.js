@@ -77,17 +77,13 @@
                 }
                 if (didOneWork == 'no' && didTwoWork == 'yes') {
                   answer = answer1;
-                  callback(answer);
-                  answer = '';
-                  didOneWork = 'no';
-                  didTwoWork = 'no';
                 } else if (didTwoWork == 'no') {
                   answer = 'N/A';
-                  callback(answer);
-                  answer = '';
-                  didOneWork = 'no';
-                  didTwoWork = 'no';
                 }
+                callback(answer);
+                answer = '';
+                didOneWork = 'no';
+                didTwoWork = 'no';
               }
             };
             jsonRequest2.open("GET", url_beg + country);
