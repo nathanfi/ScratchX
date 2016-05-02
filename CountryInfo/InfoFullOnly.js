@@ -1,4 +1,4 @@
-// TODO: MAKE A GAME WHERE YOU HAVE TO GUESS THE CAPITAL
+b// TODO: MAKE A GAME WHERE YOU HAVE TO GUESS THE CAPITAL
 (function(ext) {
     // Cleanup function when the extension is unloaded
     ext._shutdown = function() {};
@@ -12,7 +12,31 @@
     var url_option = '?fullText=true';
     var url_beg = 'https://restcountries.eu/rest/v1/name/';
     var didOneWork;
-
+    ext.gettheData = function() {
+      try {
+        if (option == 'Capital') {
+          answer1 = JSON.parse(JSONtext1)[0].capital;
+          didOneWork = 'yes';
+        } else if (option == 'Region') {
+          answer1 = JSON.parse(JSONtext1)[0].region;
+          didOneWork = 'yes';
+        } else if (option == 'Population') {
+          var stuffsucks = JSON.parse(JSONtext1)[0].population;
+          var answer2 = stuffsucks.toString();
+          var answer3 = answer2.split('');
+          for (i=answer3.length-3; i >0; i=i-3) {
+            answer3.splice(i, 0, ',');
+          }
+          for (i = 0; i < answer3.length; i++) {
+            answer1 = answer1.concat(answer3[i]);
+          }
+          didOneWork = 'yes';
+        }
+      } catch (e) {
+        didOneWork = 'no';
+      }
+    };
+    
     ext.getInfo = function(option_input, country_input, callback) {
       var option = option_input;
       var country = country_input;
@@ -23,28 +47,7 @@
       jsonRequest.onreadystatechange = function() {
         if (jsonRequest.readyState === XMLHttpRequest.DONE) {
           var JSONtext1 = jsonRequest.responseText;
-          try {
-            if (option == 'Capital') {
-              answer1 = JSON.parse(JSONtext1)[0].capital;
-              didOneWork = 'yes';
-            } else if (option == 'Region') {
-              answer1 = JSON.parse(JSONtext1)[0].region;
-              didOneWork = 'yes';
-            } else if (option == 'Population') {
-              var stuffsucks = JSON.parse(JSONtext1)[0].population;
-              var answer2 = stuffsucks.toString();
-              var answer3 = answer2.split('');
-              for (i=answer3.length-3; i >0; i=i-3) {
-                answer3.splice(i, 0, ',');
-              }
-              for (i = 0; i < answer3.length; i++) {
-                answer1 = answer1.concat(answer3[i]);
-              }
-              didOneWork = 'yes';
-            }
-          } catch (e) {
-            didOneWork = 'no';
-          }
+          ext.gettheData();
           if (didOneWork == 'yes') {
             answer = answer1;
             answer1 = '';
