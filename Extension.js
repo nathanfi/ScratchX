@@ -7,14 +7,12 @@
         return {status: 2, msg: 'Ready'};
     };
 
-    var latitude = '54.0';
-    var longitude = '12.0';
     var url_begTranslate = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
     var key = "trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
     var url_begLanguage = 'https://restcountries.eu/rest/v1/alpha/';
     var url_begCountry = 'http://api.geonames.org/countryCode?';
 
-    ext.execute = function(word, callback) {
+    ext.execute = function(word, latitude, longitude, callback) {
       var word_input = word;
       var jsonRequestCountry = new XMLHttpRequest();
       var jsonRequestLanguage = new XMLHttpRequest();
@@ -49,7 +47,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', 'Display %s in the local language', 'execute', 'Hello']
+          ['R', 'Display %s in the local language', 'execute', 'Hello', '54.0', '12.0']
         ]
     };
 
