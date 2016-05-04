@@ -7,45 +7,42 @@
         return {status: 2, msg: 'Ready'};
     };
 
-    var the_word = '';
-    var languagecode = '';
     var latitude = '54.0';
     var longitude = '12.0';
-    var countrycode = '';
+    var url_begTranslate = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
+    var key = "trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
+    var url_begLanguage = 'https://restcountries.eu/rest/v1/alpha/';
+    var url_begCountry = 'http://api.geonames.org/countryCode?';
 
     ext.execute = function(word, callback) {
       var word_input = word;
       var jsonRequestCountry = new XMLHttpRequest();
+      var jsonRequestLanguage = new XMLHttpRequest();
+      var jsonRequestTranslate = new XMLHttpRequest();
       jsonRequestCountry.onreadystatechange = function() {
         if (jsonRequestCountry.readyState === XMLHttpRequest.DONE) {
           var JSONtextCountry = jsonRequestCountry.responseText;
-          countrycode = JSON.parse(JSONtextCountry);
-          var jsonRequestLanguage = new XMLHttpRequest();
+          var countrycode = JSON.parse(JSONtextCountry);
           jsonRequestLanguage.onreadystatechange = function() {
             if (jsonRequestLanguage.readyState === XMLHttpRequest.DONE) {
               var JSONtextLanguage = jsonRequestLanguage.responseText;
-              languagecode = JSON.parse(JSONtextLanguage).languages[0];
-              var jsonRequestTranslate = new XMLHttpRequest();
+              var languagecode = JSON.parse(JSONtextLanguage).languages[0];
               jsonRequestTranslate.onreadystatechange = function() {
                 if (jsonRequestTranslate.readyState === XMLHttpRequest.DONE) {
                   var JSONtext = jsonRequestTranslate.responseText;
-                  the_word = JSON.parse(JSONtext).text[0];
+                  var the_word = JSON.parse(JSONtext).text[0];
                   callback(the_word);
                 }
               };
-              var url_begTranslate = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
-              var key = "trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
               jsonRequestTranslate.open("GET", url_begTranslate + "key=" + key + "&text=" + word_input + "&lang=" + languagecode);
               jsonRequestTranslate.send();
             }
           };
-          var url_begLanguage = 'https://restcountries.eu/rest/v1/alpha/';
           jsonRequestLanguage.open("GET", url_begLanguage + countrycode);
           jsonRequestLanguage.send();
         }
       };
-      var url_begCountry = 'http://api.geonames.org/countryCode?';
-      jsonRequestCountry.open("GET", url_begCountry + 'lat=' + latitude + '&lng=' + longitude + '&username=nathanfi');
+      jsonRequestCountry.open("GET", url_begCountry + 'lat=' + latitude + '&lng=' + longitude + '&username=nathanfi' + '&type=JSON');
       jsonRequestCountry.send();
     };
 
