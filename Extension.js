@@ -9,8 +9,8 @@
 
     var the_word = '';
     var languagecode = '';
-    var latitude = '34.0';
-    var longitude = '22.0';
+    var latitude = '54.0';
+    var longitude = '12.0';
     var countrycode = '';
 
     ext.execute = function(word, callback) {
