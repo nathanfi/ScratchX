@@ -8,14 +8,13 @@
     };
 
     var the_word = '';
-    var word_input = '';
     var languagecode = '';
-    var latitude = '47.03';
-    var longitude = '10.2';
+    var latitude = '49.0';
+    var longitude = '32.0';
     var countrycode = '';
 
     ext.execute = function(word, callback) {
-      word_input = word;
+      var word_input = word;
       var jsonRequestCountry = new XMLHttpRequest();
       jsonRequestCountry.onreadystatechange = function() {
         if (jsonRequestCountry.readyState === XMLHttpRequest.DONE) {
@@ -24,20 +23,20 @@
           var jsonRequestLanguage = new XMLHttpRequest();
           jsonRequestLanguage.onreadystatechange = function() {
             if (jsonRequestLanguage.readyState === XMLHttpRequest.DONE) {
-            var JSONtextLanguage = jsonRequestLanguage.responseText;
-                languagecode = JSON.parse(JSONtextLanguage).languages[0];
-                var jsonRequestTranslate = new XMLHttpRequest();
-                jsonRequestTranslate.onreadystatechange = function() {
-                  if (jsonRequestTranslate.readyState === XMLHttpRequest.DONE) {
-                    var JSONtext = jsonRequestTranslate.responseText;
-                    the_word = JSON.parse(JSONtext).text[0];
-                    callback(the_word);
-                  }
-                };
-                var url_begTranslate = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
-                var key = "trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
-                jsonRequestTranslate.open("GET", url_begTranslate + "key=" + key + "&text=" + word_input + "&lang=" + languagecode);
-                jsonRequestTranslate.send();
+              var JSONtextLanguage = jsonRequestLanguage.responseText;
+              languagecode = JSON.parse(JSONtextLanguage).languages[0];
+              var jsonRequestTranslate = new XMLHttpRequest();
+              jsonRequestTranslate.onreadystatechange = function() {
+                if (jsonRequestTranslate.readyState === XMLHttpRequest.DONE) {
+                  var JSONtext = jsonRequestTranslate.responseText;
+                  the_word = JSON.parse(JSONtext).text[0];
+                  callback(the_word);
+                }
+              };
+              var url_begTranslate = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
+              var key = "trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
+              jsonRequestTranslate.open("GET", url_begTranslate + "key=" + key + "&text=" + word_input + "&lang=" + languagecode);
+              jsonRequestTranslate.send();
             }
           };
           var url_begLanguage = 'https://restcountries.eu/rest/v1/alpha/';
