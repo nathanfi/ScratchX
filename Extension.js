@@ -47,7 +47,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', '%s from long,lat %s , %s', 'execute', 'Hello', '12.0', '54.0']
+          ['R', '%s in the language of %s ,  %s', 'execute', 'Hello', '12.0', '54.0']
         ]
     };
 
