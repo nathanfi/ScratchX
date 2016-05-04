@@ -94,7 +94,7 @@
           }
           if (didOneWork == 'yes') {
             if (answer == '' || answer == ' ') {
-              answer = 'This country has no capital';
+              answer = 'This country has no capital.';
             }
             callback(answer);
             answer = '';
