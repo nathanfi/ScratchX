@@ -22,7 +22,7 @@
       jsonRequestCountry.onreadystatechange = function() {
         if (jsonRequestCountry.readyState === XMLHttpRequest.DONE) {
           var JSONtextCountry = jsonRequestCountry.responseText;
-          var countrycode = JSON.parse(JSONtextCountry);
+          var countrycode = JSON.parse(JSONtextCountry.countryCode);
           jsonRequestLanguage.onreadystatechange = function() {
             if (jsonRequestLanguage.readyState === XMLHttpRequest.DONE) {
               var JSONtextLanguage = jsonRequestLanguage.responseText;
