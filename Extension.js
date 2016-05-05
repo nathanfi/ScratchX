@@ -26,9 +26,9 @@
             countrycode = JSON.parse(JSONtextCountry).countryCode;
             didThisWork = 'yes';
           } catch (e) {
-              if (JSON.parse(JSONtextCountry).message == 'invalid lat/lng') {
+              if (JSON.parse(JSONtextCountry).status.message == 'invalid lat/lng') {
                 callback('Invalid Latitude/Longitude');
-              } else if (JSON.parse(JSONtextCountry).message == 'no country code found') {
+              } else if (JSON.parse(JSONtextCountry).status.message == 'no country code found') {
               callback ('There is no country at this Latitude/Longitude.');
             }
           }
