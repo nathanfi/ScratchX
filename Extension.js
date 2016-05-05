@@ -20,7 +20,21 @@
       jsonRequestCountry.onreadystatechange = function() {
         if (jsonRequestCountry.readyState === XMLHttpRequest.DONE) {
           var JSONtextCountry = jsonRequestCountry.responseText;
-          var countrycode = JSON.parse(JSONtextCountry).countryCode;
+          var didThisWork = 'not yet';
+          var countrycode;
+          try {
+            countrycode = JSON.parse(JSONtextCountry).countryCode;
+            didThisWork = 'yes';
+          } catch (e) {
+            try {
+              if (JSON.parse(JSONtextCountry).status.message == 'invalid lat/lng') {
+                callback('Invalid Latitude/Longitude');
+              }
+            } catch (e) {
+              callback ('There is no country at this Latitude/Longitude.');
+            }
+          }
+          if (didThisWork == 'yes') {
           jsonRequestLanguage.onreadystatechange = function() {
             if (jsonRequestLanguage.readyState === XMLHttpRequest.DONE) {
               var JSONtextLanguage = jsonRequestLanguage.responseText;
@@ -39,6 +53,7 @@
           jsonRequestLanguage.open("GET", url_begLanguage + countrycode);
           jsonRequestLanguage.send();
         }
+      }
       };
       jsonRequestCountry.open("GET", url_begCountry + 'lat=' + latitude + '&lng=' + longitude + '&username=nathanfi' + '&type=JSON');
       jsonRequestCountry.send();
