@@ -67,31 +67,3 @@
     // Register the extension
     ScratchExtensions.register('Translate', descriptor, ext);
 })({});
-// ext.getLanguage = function() {
-//   var jsonRequestLanguage = new XMLHttpRequest();
-//   jsonRequestLanguage.onreadystatechange = function() {
-//     if (jsonRequestLanguage.readyState === XMLHttpRequest.DONE) {
-//     var JSONtextLanguage = jsonRequestLanguage.responseText;
-//         languagecode = JSON.parse(JSONtextLanguage).languages[0];
-//         ext.translate();
-//     }
-//   };
-//   var url_beg_getLanguage = 'https://restcountries.eu/rest/v1/alpha/';
-//   jsonRequestLanguage.open("GET", url_beg_getLanguage + countrycode);
-//   jsonRequestLanguage.send();
-// };
-
-// ext.translate = function() {
-//   var jsonRequestTranslate = new XMLHttpRequest();
-//   jsonRequestTranslate.onreadystatechange = function() {
-//     if (jsonRequestTranslate.readyState === XMLHttpRequest.DONE) {
-//     var JSONtext = jsonRequestTranslate.responseText;
-//         the_word = JSON.parse(JSONtext).text[0];
-//         // callback(the_word);
-//     }
-//   };
-//   var url_begTranslate = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
-//   var key = "trnsl.1.1.20160330T170050Z.604550f9f0ae2dd3.cf0f23a139379f9aa5513f13b7a06eabeb1898ad";
-//   jsonRequestTranslate.open("GET", url_begTranslate + "key=" + key + "&text=" + word_input + "&lang=" + languagecode);
-//   jsonRequestTranslate.send();
-// };
