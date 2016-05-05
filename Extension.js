@@ -42,6 +42,8 @@
                   var JSONtext = jsonRequestTranslate.responseText;
                   var the_word = JSON.parse(JSONtext).text[0];
                   callback(the_word);
+                  the_word = '';
+                  didThisWork = 'not yet';
                 }
               };
               jsonRequestTranslate.open("GET", url_begTranslate + "key=" + key + "&text=" + word_input + "&lang=" + languagecode);
