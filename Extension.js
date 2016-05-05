@@ -12,7 +12,7 @@
     var url_begLanguage = 'https://restcountries.eu/rest/v1/alpha/';
     var url_begCountry = 'http://api.geonames.org/countryCode?';
 
-    ext.execute = function(word, longitude, latitude, callback) {
+    ext.execute = function(word, latitude, longitude, callback) {
       var word_input = word;
       var jsonRequestCountry = new XMLHttpRequest();
       var jsonRequestLanguage = new XMLHttpRequest();
@@ -47,7 +47,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-          ['R', '%s in the language of %s ,  %s', 'execute', 'Hello', '12.0', '54.0']
+          ['R', '%s in the language of %s ,  %s', 'execute', 'Hello', '54.0', '12.0']
         ]
     };
 
