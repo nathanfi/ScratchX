@@ -17,20 +17,18 @@
       var jsonRequestCountry = new XMLHttpRequest();
       var jsonRequestLanguage = new XMLHttpRequest();
       var jsonRequestTranslate = new XMLHttpRequest();
+      var didThisWork = 'not yet';
       jsonRequestCountry.onreadystatechange = function() {
         if (jsonRequestCountry.readyState === XMLHttpRequest.DONE) {
           var JSONtextCountry = jsonRequestCountry.responseText;
-          var didThisWork = 'not yet';
           var countrycode;
           try {
             countrycode = JSON.parse(JSONtextCountry).countryCode;
             didThisWork = 'yes';
           } catch (e) {
-            try {
               if (JSON.parse(JSONtextCountry).status.message == 'invalid lat/lng') {
                 callback('Invalid Latitude/Longitude');
-              }
-            } catch (e) {
+              } else if (JSON.parse(JSONtextCountry).status.message == 'no country code found') {
               callback ('There is no country at this Latitude/Longitude.');
             }
           }
