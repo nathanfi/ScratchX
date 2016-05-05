@@ -26,10 +26,10 @@
             countrycode = JSON.parse(JSONtextCountry).countryCode;
             didThisWork = 'yes';
           } catch (e) {
-              if (JSON.parse(JSONtextCountry).status.message == 'invalid lat/lng') {
+              if (parseInt(latitude) > 90 || parseInt(longitude) > 180 || parseInt(latitude) < -90 || parseInt(longitude) < -180) {
                 callback('Invalid Latitude/Longitude');
-              } else if (JSON.parse(JSONtextCountry).status.message == 'no country code found') {
-              callback ('There is no country at this Latitude/Longitude.');
+              } else {
+                callback ('There is no country at this Latitude/Longitude.');
             }
           }
           if (didThisWork == 'yes') {
@@ -67,5 +67,5 @@
     };
 
     // Register the extension
-    ScratchExtensions.register('Translate', descriptor, ext);
+    ScratchExtensions.register('Translate From Location', descriptor, ext);
 })({});
