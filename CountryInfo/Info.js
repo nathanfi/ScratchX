@@ -151,7 +151,8 @@
         ],
         menus: {
           option_input: ['Capital', 'Sub-Region', 'Region', 'Population', 'Area', 'Native Name']
-        }
+        },
+        url: 'http://nathanfi.github.io/ScratchX/CountryInfo/README.md'
     };
 
     // Register the extension
