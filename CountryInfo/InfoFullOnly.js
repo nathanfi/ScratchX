@@ -16,6 +16,9 @@
     ext.getInfo = function(option_input, country_input, callback) {
       var option = option_input;
       var country = country_input;
+      var stuffsucks;
+      var answer2;
+      var answer3;
       if (country == 'Britain') {
         country = 'Great Britain';
       }
@@ -30,16 +33,33 @@
             } else if (option == 'Region') {
               answer1 = JSON.parse(JSONtext1)[0].region;
               didOneWork = 'yes';
+            } else if (option == 'Sub-Region') {
+              answer1 = JSON.parse(JSONtext1)[0].subregion;
+              didOneWork = 'yes';
             } else if (option == 'Population') {
-              var stuffsucks = JSON.parse(JSONtext1)[0].population;
-              var answer2 = stuffsucks.toString();
-              var answer3 = answer2.split('');
+              stuffsucks = JSON.parse(JSONtext1)[0].population;
+              answer2 = stuffsucks.toString();
+              answer3 = answer2.split('');
               for (i=answer3.length-3; i >0; i=i-3) {
                 answer3.splice(i, 0, ',');
               }
               for (i = 0; i < answer3.length; i++) {
                 answer1 = answer1.concat(answer3[i]);
               }
+              didOneWork = 'yes';
+            } else if (option == 'Area') {
+              stuffsucks = JSON.parse(JSONtext1)[0].population;
+              answer2 = stuffsucks.toString();
+              answer3 = answer2.split('');
+              for (i=answer3.length-3; i >0; i=i-3) {
+                answer3.splice(i, 0, ',');
+              }
+              for (i = 0; i < answer3.length; i++) {
+                answer1 = answer1.concat(answer3[i]);
+              }
+              didOneWork = 'yes';
+            } else if (option == 'Main Language') {
+              answer1 = JSON.parse(JSONtext2)[0].languages;
               didOneWork = 'yes';
             }
           } catch (e) {
@@ -60,16 +80,33 @@
                   } else if (option == 'Region') {
                     answer1 = JSON.parse(JSONtext2)[0].region;
                     didTwoWork = 'yes';
+                  } else if (option == 'Sub-Region') {
+                    answer1 = JSON.parse(JSONtext2)[0].subregion;
+                    didTwoWork = 'yes';
                   } else if (option == 'Population') {
-                    var stuffsucks = JSON.parse(JSONtext2)[0].population;
-                    var answer2 = stuffsucks.toString();
-                    var answer3 = answer2.split('');
+                    stuffsucks = JSON.parse(JSONtext2)[0].population;
+                    answer2 = stuffsucks.toString();
+                    answer3 = answer2.split('');
                     for (i=answer3.length-3; i >0; i=i-3) {
                       answer3.splice(i, 0, ',');
                     }
                     for (i = 0; i < answer3.length; i++) {
                       answer1 = answer1.concat(answer3[i]);
                     }
+                    didTwoWork = 'yes';
+                  } else if (option == 'Area') {
+                    stuffsucks = JSON.parse(JSONtext1)[0].population;
+                    answer2 = stuffsucks.toString();
+                    answer3 = answer2.split('');
+                    for (i=answer3.length-3; i >0; i=i-3) {
+                      answer3.splice(i, 0, ',');
+                    }
+                    for (i = 0; i < answer3.length; i++) {
+                      answer1 = answer1.concat(answer3[i]);
+                    }
+                    didTwoWork = 'yes';
+                  } else if (option == 'Main Language') {
+                    answer1 = JSON.parse(JSONtext2)[0].languages;
                     didTwoWork = 'yes';
                   }
                 } catch (e) {
@@ -113,7 +150,7 @@
           ['R', '%m.option_input of %s', 'getInfo', 'Capital', 'Afghanistan']
         ],
         menus: {
-          option_input: ['Capital', 'Region', 'Population']
+          option_input: ['Capital', 'Sub-Region', 'Region', 'Population', 'Area', 'Main Language']
         }
     };
 
