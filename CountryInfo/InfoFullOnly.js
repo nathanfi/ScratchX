@@ -58,9 +58,6 @@
                 answer1 = answer1.concat(answer3[i]);
               }
               didOneWork = 'yes';
-            } else if (option == 'Main Language') {
-              answer1 = JSON.parse(JSONtext2)[0].languages;
-              didOneWork = 'yes';
             }
           } catch (e) {
             didOneWork = 'no';
@@ -105,9 +102,6 @@
                       answer1 = answer1.concat(answer3[i]);
                     }
                     didTwoWork = 'yes';
-                  } else if (option == 'Main Language') {
-                    answer1 = JSON.parse(JSONtext2)[0].languages;
-                    didTwoWork = 'yes';
                   }
                 } catch (e) {
                   didTwoWork = 'no';
@@ -150,7 +144,7 @@
           ['R', '%m.option_input of %s', 'getInfo', 'Capital', 'Afghanistan']
         ],
         menus: {
-          option_input: ['Capital', 'Sub-Region', 'Region', 'Population', 'Area', 'Main Language']
+          option_input: ['Capital', 'Sub-Region', 'Region', 'Population', 'Area']
         }
     };
 
