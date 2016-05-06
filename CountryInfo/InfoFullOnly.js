@@ -58,6 +58,9 @@
                 answer1 = answer1.concat(answer3[i]);
               }
               didOneWork = 'yes';
+            } else if (option == 'Native Name') {
+              answer1 = JSON.parse(JSONtext1)[0].nativeName;
+              didOneWork = 'yes';
             }
           } catch (e) {
             didOneWork = 'no';
@@ -92,7 +95,7 @@
                     }
                     didTwoWork = 'yes';
                   } else if (option == 'Area') {
-                    stuffsucks = JSON.parse(JSONtext1)[0].area;
+                    stuffsucks = JSON.parse(JSONtext2)[0].area;
                     answer2 = stuffsucks.toString();
                     answer3 = answer2.split('');
                     for (i=answer3.length-3; i >0; i=i-3) {
@@ -101,6 +104,9 @@
                     for (i = 0; i < answer3.length; i++) {
                       answer1 = answer1.concat(answer3[i]);
                     }
+                    didTwoWork = 'yes';
+                  } else if (option == 'Native Name') {
+                    answer1 = JSON.parse(JSONtext2)[0].nativeName;
                     didTwoWork = 'yes';
                   }
                 } catch (e) {
