@@ -48,7 +48,7 @@
               }
               didOneWork = 'yes';
             } else if (option == 'Area') {
-              stuffsucks = JSON.parse(JSONtext1)[0].population;
+              stuffsucks = JSON.parse(JSONtext1)[0].area;
               answer2 = stuffsucks.toString();
               answer3 = answer2.split('');
               for (i=answer3.length-3; i >0; i=i-3) {
@@ -92,7 +92,7 @@
                     }
                     didTwoWork = 'yes';
                   } else if (option == 'Area') {
-                    stuffsucks = JSON.parse(JSONtext1)[0].population;
+                    stuffsucks = JSON.parse(JSONtext1)[0].area;
                     answer2 = stuffsucks.toString();
                     answer3 = answer2.split('');
                     for (i=answer3.length-3; i >0; i=i-3) {
