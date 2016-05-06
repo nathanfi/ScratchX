@@ -150,7 +150,7 @@
           ['R', '%m.option_input of %s', 'getInfo', 'Capital', 'Afghanistan']
         ],
         menus: {
-          option_input: ['Capital', 'Sub-Region', 'Region', 'Population', 'Area']
+          option_input: ['Capital', 'Sub-Region', 'Region', 'Population', 'Area', 'Native Name']
         }
     };
 
