@@ -43,6 +43,7 @@
             }
             callback(output);
             output = '';
+            filler = '';
           } catch (e) {
             var halfNameRequest = new XMLHttpRequest();
             halfNameRequest.onreadystatechange = function() {
@@ -78,6 +79,7 @@
                 }
                 callback(output);
                 output = '';
+                filler = '';
               }
             };
             halfNameRequest.open("GET", url_beginning + country);
