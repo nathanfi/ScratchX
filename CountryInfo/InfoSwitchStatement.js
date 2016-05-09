@@ -85,6 +85,7 @@
                   if (output === '' || output == ' ') {
                     output = 'This country has no capital';
                   }
+                  output = answer1;
                   callback(output);
                   output = '';
                   // didOneWork = 'no';
