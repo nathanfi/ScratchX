@@ -92,6 +92,8 @@
                 } catch (e) {
                   // didTwoWork = 'no';
                   output = 'N/A';
+                  callback(output);
+                  output = '';
                 }
                 // if (didOneWork == 'no' && didTwoWork == 'yes') {
                 //   output = answer1;
