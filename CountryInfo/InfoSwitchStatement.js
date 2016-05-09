@@ -26,39 +26,27 @@
             switch (option) {
               case 'Capital': answer1 = JSON.parse(fullNameText)[0].capital; break;
               case 'Region': answer1 = JSON.parse(fullNameText)[0].region; break;
-              case 'Sub-Region': answer1 = JSON.parse(fullNameText)[0].subregion;  break;
-              case 'Population': answer3 = ((JSON.parse(fullNameText)[0].population).toString()).split('');
-                // answer2 = stuffsucks.toString();
-                // answer3 = answer2.split('');
-                for (i=answer3.length-3; i >0; i=i-3) {
-                  answer3.splice(i, 0, ',');
-                }
-                for (i = 0; i < answer3.length; i++) {
-                  answer1 = answer1.concat(answer3[i]);
-                } break;
-              case 'Area': stuffsucks = JSON.parse(fullNameText)[0].area;
-              answer2 = stuffsucks.toString();
-              answer3 = answer2.split('');
-              for (i=answer3.length-3; i >0; i=i-3) {
-                answer3.splice(i, 0, ',');
-              }
-              for (i = 0; i < answer3.length; i++) {
-                answer1 = answer1.concat(answer3[i]);
-              } break;
-            case 'Native Name': answer1 = JSON.parse(fullNameText)[0].nativeName; break;
+              case 'Sub-Region': answer1 = JSON.parse(fullNameText)[0].subregion; break;
+              case 'Native Name': answer1 = JSON.parse(fullNameText)[0].nativeName; break;
+              case 'Population': answer2 = ((JSON.parse(fullNameText)[0].population).toString()).split('');
+                for (i=answer2.length-3; i >0; i=i-3) { answer2.splice(i, 0, ','); }
+                for (i = 0; i < answer2.length; i++) { answer1 = answer1.concat(answer2[i]); } break;
+              case 'Area': answer2 = ((JSON.parse(fullNameText)[0].area).toString()).split('');
+                for (i=answer2.length-3; i >0; i=i-3) { answer2.splice(i, 0, ','); }
+                for (i = 0; i < answer2.length; i++) { answer1 = answer1.concat(answer2[i]); } break;
             }
-            didOneWork = 'yes';
+            // didOneWork = 'yes';
             output = answer1;
-            answer1 = '';
             if (output === '' || output == ' ') {
               output = 'This country has no capital.';
             }
             callback(output);
             output = '';
-            didOneWork = 'no';
-            didTwoWork = 'no';
+            answer1 = '';
+            // didOneWork = 'no';
+            // didTwoWork = 'no';
           } catch (e) {
-            didOneWork = 'no';
+            // didOneWork = 'no';
             var halfNameRequest = new XMLHttpRequest();
             halfNameRequest.onreadystatechange = function() {
               if (halfNameRequest.readyState === XMLHttpRequest.DONE) {
@@ -66,13 +54,10 @@
                 try {
                   if (option == 'Capital') {
                     answer1 = JSON.parse(halfNameText)[0].capital;
-                    didTwoWork = 'yes';
                   } else if (option == 'Region') {
                     answer1 = JSON.parse(halfNameText)[0].region;
-                    didTwoWork = 'yes';
                   } else if (option == 'Sub-Region') {
                     answer1 = JSON.parse(halfNameText)[0].subregion;
-                    didTwoWork = 'yes';
                   } else if (option == 'Population') {
                     stuffsucks = JSON.parse(halfNameText)[0].population;
                     answer2 = stuffsucks.toString();
@@ -83,7 +68,6 @@
                     for (i = 0; i < answer3.length; i++) {
                       answer1 = answer1.concat(answer3[i]);
                     }
-                    didTwoWork = 'yes';
                   } else if (option == 'Area') {
                     stuffsucks = JSON.parse(halfNameText)[0].area;
                     answer2 = stuffsucks.toString();
@@ -94,26 +78,26 @@
                     for (i = 0; i < answer3.length; i++) {
                       answer1 = answer1.concat(answer3[i]);
                     }
-                    didTwoWork = 'yes';
                   } else if (option == 'Native Name') {
                     answer1 = JSON.parse(halfNameText)[0].nativeName;
-                    didTwoWork = 'yes';
                   }
+                  didTwoWork = 'yes';
+                  if (output === '' || output == ' ') {
+                    output = 'This country has no capital';
+                  }
+                  callback(output);
+                  output = '';
+                  // didOneWork = 'no';
+                  // didTwoWork = 'no';
                 } catch (e) {
-                  didTwoWork = 'no';
-                }
-                if (didOneWork == 'no' && didTwoWork == 'yes') {
-                  output = answer1;
-                } else if (didTwoWork == 'no') {
+                  // didTwoWork = 'no';
                   output = 'N/A';
                 }
-                if (output === '' || output == ' ') {
-                  output = 'This country has no capital';
-                }
-                callback(output);
-                output = '';
-                didOneWork = 'no';
-                didTwoWork = 'no';
+                // if (didOneWork == 'no' && didTwoWork == 'yes') {
+                //   output = answer1;
+                // } else if (didTwoWork == 'no') {
+                //   output = 'N/A';
+                // }
               }
             };
             halfNameRequest.open("GET", url_beginning + country);
