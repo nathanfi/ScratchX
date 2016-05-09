@@ -51,6 +51,15 @@
                     case 'Area':        filler = ((JSON.parse(halfNameText)[0].area).toString()).split('');
                                           for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                           for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
+                    case 'Population Density': var pop; var area; filler = ((JSON.parse(halfNameText)[0].population).toString()).split('');
+                                          for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                          for (i = 0; i < filler.length; i++) { pop = pop.concat(filler[i]); }
+                                          filler = ((JSON.parse(halfNameText)[0].area).toString()).split('');
+                                          for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                          for (i = 0; i < filler.length; i++) { area = area.concat(filler[i]); }
+                                          filler = round(parseInt(pop)/parseInt(area));
+                                          for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                          for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
                     }
                   if (output === '' || output == ' ') {
                     output = 'This country has no ' + option + '.';
