@@ -89,19 +89,11 @@
                   output = answer1;
                   callback(output);
                   output = '';
-                  // didOneWork = 'no';
-                  // didTwoWork = 'no';
                 } catch (e) {
-                  // didTwoWork = 'no';
                   output = 'N/A';
                   callback(output);
                   output = '';
                 }
-                // if (didOneWork == 'no' && didTwoWork == 'yes') {
-                //   output = answer1;
-                // } else if (didTwoWork == 'no') {
-                //   output = 'N/A';
-                // }
               }
             };
             halfNameRequest.open("GET", url_beginning + country);
