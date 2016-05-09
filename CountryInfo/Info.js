@@ -7,11 +7,11 @@
         return {status: 2, msg: 'Ready'};
     };
     var output;
+    var filler;
     var request_option = '?fullText=true';
     var url_beginning = 'https://restcountries.eu/rest/v1/name/';
 
     ext.getInfo = function(option, country, callback) {
-      var filler;
       var fullNameRequest = new XMLHttpRequest();
       fullNameRequest.onreadystatechange = function() {
         if (fullNameRequest.readyState === XMLHttpRequest.DONE) {
