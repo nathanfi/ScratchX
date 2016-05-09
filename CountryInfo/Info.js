@@ -7,9 +7,9 @@
         return {status: 2, msg: 'Ready'};
     };
     var answer1 = '';
-    var answer;
-    var url_option = '?fullText=true';
-    var url_beg = 'https://restcountries.eu/rest/v1/name/';
+    var output;
+    var request_option = '?fullText=true';
+    var url_beginning = 'https://restcountries.eu/rest/v1/name/';
     var didOneWork;
     var didTwoWork;
 
@@ -19,25 +19,22 @@
       var stuffsucks;
       var answer2;
       var answer3;
-      if (country == 'Britain') {
-        country = 'Great Britain';
-      }
-      var jsonRequest = new XMLHttpRequest();
-      jsonRequest.onreadystatechange = function() {
-        if (jsonRequest.readyState === XMLHttpRequest.DONE) {
-          var JSONtext1 = jsonRequest.responseText;
+      var fullNameRequest = new XMLHttpRequest();
+      fullNameRequest.onreadystatechange = function() {
+        if (fullNameRequest.readyState === XMLHttpRequest.DONE) {
+          var fullNameText = fullNameRequest.responseText;
           try {
             if (option == 'Capital') {
-              answer1 = JSON.parse(JSONtext1)[0].capital;
+              answer1 = JSON.parse(fullNameText)[0].capital;
               didOneWork = 'yes';
             } else if (option == 'Region') {
-              answer1 = JSON.parse(JSONtext1)[0].region;
+              answer1 = JSON.parse(fullNameText)[0].region;
               didOneWork = 'yes';
             } else if (option == 'Sub-Region') {
-              answer1 = JSON.parse(JSONtext1)[0].subregion;
+              answer1 = JSON.parse(fullNameText)[0].subregion;
               didOneWork = 'yes';
             } else if (option == 'Population') {
-              stuffsucks = JSON.parse(JSONtext1)[0].population;
+              stuffsucks = JSON.parse(fullNameText)[0].population;
               answer2 = stuffsucks.toString();
               answer3 = answer2.split('');
               for (i=answer3.length-3; i >0; i=i-3) {
@@ -48,7 +45,7 @@
               }
               didOneWork = 'yes';
             } else if (option == 'Area') {
-              stuffsucks = JSON.parse(JSONtext1)[0].area;
+              stuffsucks = JSON.parse(fullNameText)[0].area;
               answer2 = stuffsucks.toString();
               answer3 = answer2.split('');
               for (i=answer3.length-3; i >0; i=i-3) {
@@ -59,7 +56,7 @@
               }
               didOneWork = 'yes';
             } else if (option == 'Native Name') {
-              answer1 = JSON.parse(JSONtext1)[0].nativeName;
+              answer1 = JSON.parse(fullNameText)[0].nativeName;
               didOneWork = 'yes';
             }
           } catch (e) {
@@ -69,22 +66,22 @@
             answer = answer1;
             answer1 = '';
           } else {
-            var jsonRequest2 = new XMLHttpRequest();
-            jsonRequest2.onreadystatechange = function() {
-              if (jsonRequest2.readyState === XMLHttpRequest.DONE) {
-                var JSONtext2 = jsonRequest2.responseText;
+            var halfNameRequest = new XMLHttpRequest();
+            halfNameRequest.onreadystatechange = function() {
+              if (halfNameRequest.readyState === XMLHttpRequest.DONE) {
+                var halfNameText = halfNameRequest.responseText;
                 try {
                   if (option == 'Capital') {
-                    answer1 = JSON.parse(JSONtext2)[0].capital;
+                    answer1 = JSON.parse(halfNameText)[0].capital;
                     didTwoWork = 'yes';
                   } else if (option == 'Region') {
-                    answer1 = JSON.parse(JSONtext2)[0].region;
+                    answer1 = JSON.parse(halfNameText)[0].region;
                     didTwoWork = 'yes';
                   } else if (option == 'Sub-Region') {
-                    answer1 = JSON.parse(JSONtext2)[0].subregion;
+                    answer1 = JSON.parse(halfNameText)[0].subregion;
                     didTwoWork = 'yes';
                   } else if (option == 'Population') {
-                    stuffsucks = JSON.parse(JSONtext2)[0].population;
+                    stuffsucks = JSON.parse(halfNameText)[0].population;
                     answer2 = stuffsucks.toString();
                     answer3 = answer2.split('');
                     for (i=answer3.length-3; i >0; i=i-3) {
@@ -95,7 +92,7 @@
                     }
                     didTwoWork = 'yes';
                   } else if (option == 'Area') {
-                    stuffsucks = JSON.parse(JSONtext2)[0].area;
+                    stuffsucks = JSON.parse(halfNameText)[0].area;
                     answer2 = stuffsucks.toString();
                     answer3 = answer2.split('');
                     for (i=answer3.length-3; i >0; i=i-3) {
@@ -106,42 +103,42 @@
                     }
                     didTwoWork = 'yes';
                   } else if (option == 'Native Name') {
-                    answer1 = JSON.parse(JSONtext2)[0].nativeName;
+                    answer1 = JSON.parse(halfNameText)[0].nativeName;
                     didTwoWork = 'yes';
                   }
                 } catch (e) {
                   didTwoWork = 'no';
                 }
                 if (didOneWork == 'no' && didTwoWork == 'yes') {
-                  answer = answer1;
+                  output = answer1;
                 } else if (didTwoWork == 'no') {
-                  answer = 'N/A';
+                  output = 'N/A';
                 }
-                if (answer == '' || answer == ' ') {
-                  answer = 'This country has no capital';
+                if (output === '' || output == ' ') {
+                  output = 'This country has no capital';
                 }
-                callback(answer);
-                answer = '';
+                callback(output);
+                output = '';
                 didOneWork = 'no';
                 didTwoWork = 'no';
               }
             };
-            jsonRequest2.open("GET", url_beg + country);
-            jsonRequest2.send();
+            halfNameRequest.open("GET", url_beginning + country);
+            halfNameRequest.send();
           }
           if (didOneWork == 'yes') {
-            if (answer == '' || answer == ' ') {
-              answer = 'This country has no capital.';
+            if (output === '' || output == ' ') {
+              output = 'This country has no capital.';
             }
-            callback(answer);
-            answer = '';
+            callback(output);
+            output = '';
             didOneWork = 'no';
             didTwoWork = 'no';
           }
         }
       };
-      jsonRequest.open("GET", url_beg + country + url_option);
-      jsonRequest.send();
+      fullNameRequest.open("GET", url_beginning + country + request_option);
+      fullNameRequest.send();
     };
 
     // Block and block menu descriptions
