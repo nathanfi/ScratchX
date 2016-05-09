@@ -6,129 +6,64 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    var answer1 = '';
     var output;
     var request_option = '?fullText=true';
     var url_beginning = 'https://restcountries.eu/rest/v1/name/';
-    var didOneWork;
-    var didTwoWork;
 
-    ext.getInfo = function(option_input, country_input, callback) {
-      var option = option_input;
-      var country = country_input;
-      var stuffsucks;
-      var answer2;
-      var answer3;
+    ext.getInfo = function(option, country, callback) {
+      var filler;
       var fullNameRequest = new XMLHttpRequest();
       fullNameRequest.onreadystatechange = function() {
         if (fullNameRequest.readyState === XMLHttpRequest.DONE) {
           var fullNameText = fullNameRequest.responseText;
           try {
-            if (option == 'Capital') {
-              answer1 = JSON.parse(fullNameText)[0].capital;
-            } else if (option == 'Region') {
-              answer1 = JSON.parse(fullNameText)[0].region;
-            } else if (option == 'Sub-Region') {
-              answer1 = JSON.parse(fullNameText)[0].subregion;
-            } else if (option == 'Population') {
-              stuffsucks = JSON.parse(fullNameText)[0].population;
-              answer2 = stuffsucks.toString();
-              answer3 = answer2.split('');
-              for (i=answer3.length-3; i >0; i=i-3) {
-                answer3.splice(i, 0, ',');
-              }
-              for (i = 0; i < answer3.length; i++) {
-                answer1 = answer1.concat(answer3[i]);
-              }
-            } else if (option == 'Area') {
-              stuffsucks = JSON.parse(fullNameText)[0].area;
-              answer2 = stuffsucks.toString();
-              answer3 = answer2.split('');
-              for (i=answer3.length-3; i >0; i=i-3) {
-                answer3.splice(i, 0, ',');
-              }
-              for (i = 0; i < answer3.length; i++) {
-                answer1 = answer1.concat(answer3[i]);
-              }
-            } else if (option == 'Native Name') {
-              answer1 = JSON.parse(fullNameText)[0].nativeName;
+            switch (option) {
+              case 'Capital':     output = JSON.parse(fullNameText)[0].capital;    break;
+              case 'Region':      output = JSON.parse(fullNameText)[0].region;     break;
+              case 'Sub-Region':  output = JSON.parse(fullNameText)[0].subregion;  break;
+              case 'Native Name': output = JSON.parse(fullNameText)[0].nativeName; break;
+              case 'Population':  filler = ((JSON.parse(fullNameText)[0].population).toString()).split('');
+                                    for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                    for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
+              case 'Area':        filler = ((JSON.parse(fullNameText)[0].area).toString()).split('');
+                                    for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                    for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
             }
-            didOneWork = 'yes';
-          } catch (e) {
-            didOneWork = 'no';
-          }
-          if (didOneWork == 'yes') {
-            answer = answer1;
-            answer1 = '';
-          } else {
-            var halfNameRequest = new XMLHttpRequest();
-            halfNameRequest.onreadystatechange = function() {
-              if (halfNameRequest.readyState === XMLHttpRequest.DONE) {
-                var halfNameText = halfNameRequest.responseText;
-                try {
-                  if (option == 'Capital') {
-                    answer1 = JSON.parse(halfNameText)[0].capital;
-                    didTwoWork = 'yes';
-                  } else if (option == 'Region') {
-                    answer1 = JSON.parse(halfNameText)[0].region;
-                    didTwoWork = 'yes';
-                  } else if (option == 'Sub-Region') {
-                    answer1 = JSON.parse(halfNameText)[0].subregion;
-                    didTwoWork = 'yes';
-                  } else if (option == 'Population') {
-                    stuffsucks = JSON.parse(halfNameText)[0].population;
-                    answer2 = stuffsucks.toString();
-                    answer3 = answer2.split('');
-                    for (i=answer3.length-3; i >0; i=i-3) {
-                      answer3.splice(i, 0, ',');
-                    }
-                    for (i = 0; i < answer3.length; i++) {
-                      answer1 = answer1.concat(answer3[i]);
-                    }
-                    didTwoWork = 'yes';
-                  } else if (option == 'Area') {
-                    stuffsucks = JSON.parse(halfNameText)[0].area;
-                    answer2 = stuffsucks.toString();
-                    answer3 = answer2.split('');
-                    for (i=answer3.length-3; i >0; i=i-3) {
-                      answer3.splice(i, 0, ',');
-                    }
-                    for (i = 0; i < answer3.length; i++) {
-                      answer1 = answer1.concat(answer3[i]);
-                    }
-                    didTwoWork = 'yes';
-                  } else if (option == 'Native Name') {
-                    answer1 = JSON.parse(halfNameText)[0].nativeName;
-                    didTwoWork = 'yes';
-                  }
-                } catch (e) {
-                  didTwoWork = 'no';
-                }
-                if (didOneWork == 'no' && didTwoWork == 'yes') {
-                  output = answer1;
-                } else if (didTwoWork == 'no') {
-                  output = 'N/A';
-                }
-                if (output === '' || output == ' ') {
-                  output = 'This country has no capital';
-                }
-                callback(output);
-                output = '';
-                didOneWork = 'no';
-                didTwoWork = 'no';
-              }
-            };
-            halfNameRequest.open("GET", url_beginning + country);
-            halfNameRequest.send();
-          }
-          if (didOneWork == 'yes') {
             if (output === '' || output == ' ') {
               output = 'This country has no capital.';
             }
             callback(output);
             output = '';
-            didOneWork = 'no';
-            didTwoWork = 'no';
+          } catch (e) {
+            var halfNameRequest = new XMLHttpRequest();
+            halfNameRequest.onreadystatechange = function() {
+              if (halfNameRequest.readyState === XMLHttpRequest.DONE) {
+                var halfNameText = halfNameRequest.responseText;
+                try {
+                  switch (option) {
+                    case 'Capital':     output = JSON.parse(halfNameText)[0].capital;    break;
+                    case 'Region':      output = JSON.parse(halfNameText)[0].region;     break;
+                    case 'Sub-Region':  output = JSON.parse(halfNameText)[0].subregion;  break;
+                    case 'Native Name': output = JSON.parse(halfNameText)[0].nativeName; break;
+                    case 'Population':  filler = ((JSON.parse(halfNameText)[0].population).toString()).split('');
+                                          for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                          for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
+                    case 'Area':        filler = ((JSON.parse(halfNameText)[0].area).toString()).split('');
+                                          for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                          for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
+                    }
+                  if (output === '' || output == ' ') {
+                    output = 'This country has no ' + option + '.';
+                  }
+                } catch (e) {
+                  output = 'Please choose a real country.';
+                }
+                callback(output);
+                output = '';
+              }
+            };
+            halfNameRequest.open("GET", url_beginning + country);
+            halfNameRequest.send();
           }
         }
       };
