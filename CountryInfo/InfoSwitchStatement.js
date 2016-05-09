@@ -27,9 +27,9 @@
               case 'Capital': answer1 = JSON.parse(fullNameText)[0].capital; break;
               case 'Region': answer1 = JSON.parse(fullNameText)[0].region; break;
               case 'Sub-Region': answer1 = JSON.parse(fullNameText)[0].subregion;  break;
-              case 'Population': stuffsucks = JSON.parse(fullNameText)[0].population;
-                answer2 = stuffsucks.toString();
-                answer3 = answer2.split('');
+              case 'Population': answer3 = ((JSON.parse(fullNameText)[0].population).toString()).split('');
+                // answer2 = stuffsucks.toString();
+                // answer3 = answer2.split('');
                 for (i=answer3.length-3; i >0; i=i-3) {
                   answer3.splice(i, 0, ',');
                 }
