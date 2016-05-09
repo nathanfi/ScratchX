@@ -13,8 +13,7 @@
     var didOneWork;
     var didTwoWork;
 
-    ext.getInfo = function(option_input, country_input, callback) {
-      var option = option_input;
+    ext.getInfo = function(option, country_input, callback) {
       var country = country_input;
       var stuffsucks;
       var answer2;
@@ -24,14 +23,20 @@
         if (fullNameRequest.readyState === XMLHttpRequest.DONE) {
           var fullNameText = fullNameRequest.responseText;
           try {
-            if (option == 'Capital') {
-              answer1 = JSON.parse(fullNameText)[0].capital;
-            } else if (option == 'Region') {
-              answer1 = JSON.parse(fullNameText)[0].region;
-            } else if (option == 'Sub-Region') {
-              answer1 = JSON.parse(fullNameText)[0].subregion;
-            } else if (option == 'Population') {
-              stuffsucks = JSON.parse(fullNameText)[0].population;
+            switch (option) {
+              case 'Capital': answer1 = JSON.parse(fullNameText)[0].capital; break;
+              case 'Region': answer1 = JSON.parse(fullNameText)[0].region; break;
+              case 'Sub-Region': answer1 = JSON.parse(fullNameText)[0].subregion;  break;
+              case 'Population': stuffsucks = JSON.parse(fullNameText)[0].population;
+                answer2 = stuffsucks.toString();
+                answer3 = answer2.split('');
+                for (i=answer3.length-3; i >0; i=i-3) {
+                  answer3.splice(i, 0, ',');
+                }
+                for (i = 0; i < answer3.length; i++) {
+                  answer1 = answer1.concat(answer3[i]);
+                } break;
+              case 'Area': stuffsucks = JSON.parse(fullNameText)[0].area;
               answer2 = stuffsucks.toString();
               answer3 = answer2.split('');
               for (i=answer3.length-3; i >0; i=i-3) {
@@ -39,28 +44,21 @@
               }
               for (i = 0; i < answer3.length; i++) {
                 answer1 = answer1.concat(answer3[i]);
-              }
-            } else if (option == 'Area') {
-              stuffsucks = JSON.parse(fullNameText)[0].area;
-              answer2 = stuffsucks.toString();
-              answer3 = answer2.split('');
-              for (i=answer3.length-3; i >0; i=i-3) {
-                answer3.splice(i, 0, ',');
-              }
-              for (i = 0; i < answer3.length; i++) {
-                answer1 = answer1.concat(answer3[i]);
-              }
-            } else if (option == 'Native Name') {
-              answer1 = JSON.parse(fullNameText)[0].nativeName;
+              } break;
+            case 'Native Name': answer1 = JSON.parse(fullNameText)[0].nativeName; break;
             }
             didOneWork = 'yes';
+            output = answer1;
+            answer1 = '';
+            if (output === '' || output == ' ') {
+              output = 'This country has no capital.';
+            }
+            callback(output);
+            output = '';
+            didOneWork = 'no';
+            didTwoWork = 'no';
           } catch (e) {
             didOneWork = 'no';
-          }
-          if (didOneWork == 'yes') {
-            answer = answer1;
-            answer1 = '';
-          } else {
             var halfNameRequest = new XMLHttpRequest();
             halfNameRequest.onreadystatechange = function() {
               if (halfNameRequest.readyState === XMLHttpRequest.DONE) {
@@ -120,15 +118,6 @@
             };
             halfNameRequest.open("GET", url_beginning + country);
             halfNameRequest.send();
-          }
-          if (didOneWork == 'yes') {
-            if (output === '' || output == ' ') {
-              output = 'This country has no capital.';
-            }
-            callback(output);
-            output = '';
-            didOneWork = 'no';
-            didTwoWork = 'no';
           }
         }
       };
