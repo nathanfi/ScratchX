@@ -6,7 +6,6 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    var info = ''; // a filler
     var output;
     var request_option = '?fullText=true';
     var url_beginning = 'https://restcountries.eu/rest/v1/name/';
@@ -19,24 +18,22 @@
           var fullNameText = fullNameRequest.responseText;
           try {
             switch (option) {
-              case 'Capital': info = JSON.parse(fullNameText)[0].capital; break;
-              case 'Region': info = JSON.parse(fullNameText)[0].region; break;
-              case 'Sub-Region': info = JSON.parse(fullNameText)[0].subregion; break;
-              case 'Native Name': info = JSON.parse(fullNameText)[0].nativeName; break;
-              case 'Population': holderVariant = ((JSON.parse(fullNameText)[0].population).toString()).split('');
-                for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
-                for (i = 0; i < holderVariant.length; i++) { info = info.concat(holderVariant[i]); } break;
-              case 'Area': holderVariant = ((JSON.parse(fullNameText)[0].area).toString()).split('');
-                for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
-                for (i = 0; i < holderVariant.length; i++) { info = info.concat(holderVariant[i]); } break;
+              case 'Capital':     output = JSON.parse(fullNameText)[0].capital;    break;
+              case 'Region':      output = JSON.parse(fullNameText)[0].region;     break;
+              case 'Sub-Region':  output = JSON.parse(fullNameText)[0].subregion;  break;
+              case 'Native Name': output = JSON.parse(fullNameText)[0].nativeName; break;
+              case 'Population':  holderVariant = ((JSON.parse(fullNameText)[0].population).toString()).split('');
+                                    for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
+                                    for (i = 0; i < holderVariant.length; i++) { output = output.concat(holderVariant[i]); } break;
+              case 'Area':        holderVariant = ((JSON.parse(fullNameText)[0].area).toString()).split('');
+                                    for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
+                                    for (i = 0; i < holderVariant.length; i++) { output = output.concat(holderVariant[i]); } break;
             }
-            output = info;
             if (output === '' || output == ' ') {
               output = 'This country has no capital.';
             }
             callback(output);
             output = '';
-            info = '';
           } catch (e) {
             var halfNameRequest = new XMLHttpRequest();
             halfNameRequest.onreadystatechange = function() {
@@ -44,18 +41,17 @@
                 var halfNameText = halfNameRequest.responseText;
                 try {
                   switch (option) {
-                    case 'Capital': info = JSON.parse(halfNameText)[0].capital; break;
-                    case 'Region': info = JSON.parse(halfNameText)[0].region; break;
-                    case 'Sub-Region': info = JSON.parse(halfNameText)[0].subregion; break;
-                    case 'Native Name': info = JSON.parse(halfNameText)[0].nativeName; break;
-                    case 'Population': holderVariant = ((JSON.parse(halfNameText)[0].population).toString()).split('');
-                      for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
-                      for (i = 0; i < holderVariant.length; i++) { info = info.concat(holderVariant[i]); } break;
-                    case 'Area': holderVariant = ((JSON.parse(halfNameText)[0].area).toString()).split('');
-                      for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
-                      for (i = 0; i < holderVariant.length; i++) { info = info.concat(holderVariant[i]); } break;
+                    case 'Capital':     output = JSON.parse(halfNameText)[0].capital;    break;
+                    case 'Region':      output = JSON.parse(halfNameText)[0].region;     break;
+                    case 'Sub-Region':  output = JSON.parse(halfNameText)[0].subregion;  break;
+                    case 'Native Name': output = JSON.parse(halfNameText)[0].nativeName; break;
+                    case 'Population':  holderVariant = ((JSON.parse(halfNameText)[0].population).toString()).split('');
+                                          for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
+                                          for (i = 0; i < holderVariant.length; i++) { output = output.concat(holderVariant[i]); } break;
+                    case 'Area':        holderVariant = ((JSON.parse(halfNameText)[0].area).toString()).split('');
+                                          for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
+                                          for (i = 0; i < holderVariant.length; i++) { output = output.concat(holderVariant[i]); } break;
                     }
-                  output = info;
                   if (output === '' || output == ' ') {
                     output = 'This country has no capital.';
                   }
@@ -64,7 +60,6 @@
                 }
                 callback(output);
                 output = '';
-                info = '';
               }
             };
             halfNameRequest.open("GET", url_beginning + country);
