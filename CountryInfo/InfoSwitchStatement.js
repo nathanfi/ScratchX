@@ -82,6 +82,7 @@
                     answer1 = JSON.parse(halfNameText)[0].nativeName;
                   }
                   didTwoWork = 'yes';
+                  output = answer1;
                   if (output === '' || output == ' ') {
                     output = 'This country has no capital';
                   }
