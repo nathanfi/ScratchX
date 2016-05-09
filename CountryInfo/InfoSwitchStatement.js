@@ -11,7 +11,7 @@
     var url_beginning = 'https://restcountries.eu/rest/v1/name/';
 
     ext.getInfo = function(option, country, callback) {
-      var holderVariant;
+      var filler;
       var fullNameRequest = new XMLHttpRequest();
       fullNameRequest.onreadystatechange = function() {
         if (fullNameRequest.readyState === XMLHttpRequest.DONE) {
@@ -22,12 +22,12 @@
               case 'Region':      output = JSON.parse(fullNameText)[0].region;     break;
               case 'Sub-Region':  output = JSON.parse(fullNameText)[0].subregion;  break;
               case 'Native Name': output = JSON.parse(fullNameText)[0].nativeName; break;
-              case 'Population':  holderVariant = ((JSON.parse(fullNameText)[0].population).toString()).split('');
-                                    for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
-                                    for (i = 0; i < holderVariant.length; i++) { output = output.concat(holderVariant[i]); } break;
-              case 'Area':        holderVariant = ((JSON.parse(fullNameText)[0].area).toString()).split('');
-                                    for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
-                                    for (i = 0; i < holderVariant.length; i++) { output = output.concat(holderVariant[i]); } break;
+              case 'Population':  filler = ((JSON.parse(fullNameText)[0].population).toString()).split('');
+                                    for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                    for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
+              case 'Area':        filler = ((JSON.parse(fullNameText)[0].area).toString()).split('');
+                                    for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                    for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
             }
             if (output === '' || output == ' ') {
               output = 'This country has no capital.';
@@ -45,15 +45,15 @@
                     case 'Region':      output = JSON.parse(halfNameText)[0].region;     break;
                     case 'Sub-Region':  output = JSON.parse(halfNameText)[0].subregion;  break;
                     case 'Native Name': output = JSON.parse(halfNameText)[0].nativeName; break;
-                    case 'Population':  holderVariant = ((JSON.parse(halfNameText)[0].population).toString()).split('');
-                                          for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
-                                          for (i = 0; i < holderVariant.length; i++) { output = output.concat(holderVariant[i]); } break;
-                    case 'Area':        holderVariant = ((JSON.parse(halfNameText)[0].area).toString()).split('');
-                                          for (i=holderVariant.length-3; i >0; i=i-3) { holderVariant.splice(i, 0, ','); }
-                                          for (i = 0; i < holderVariant.length; i++) { output = output.concat(holderVariant[i]); } break;
+                    case 'Population':  filler = ((JSON.parse(halfNameText)[0].population).toString()).split('');
+                                          for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                          for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
+                    case 'Area':        filler = ((JSON.parse(halfNameText)[0].area).toString()).split('');
+                                          for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                          for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
                     }
                   if (output === '' || output == ' ') {
-                    output = 'This country has no capital.';
+                    output = 'This country has no ' + option + '.';
                   }
                 } catch (e) {
                   output = 'Please choose a real country.';
