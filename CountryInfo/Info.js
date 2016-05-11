@@ -32,8 +32,8 @@
                                     for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); }
                                     output = output.concat(' sq. km'); break;
               case 'Population Density': pop = (JSON.parse(fullNameText)[0].population).toString();
-                                    area = (JSON.parse(fullNameText)[0].area).toString(); filler = pop + '/' + area;
-                                    /*filler = parseInt(pop)/parseInt(area); /*((Math.round((parseInt(pop)/parseInt(area)))).toString()).split('');
+                                    area = (JSON.parse(fullNameText)[0].area).toString();
+                                    filler = parseInt(pop)/parseInt(area); /*((Math.round((parseInt(pop)/parseInt(area)))).toString()).split('');
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                     for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } */ callback(filler); break;
             }
