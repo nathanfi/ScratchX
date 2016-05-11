@@ -33,7 +33,6 @@
               case 'Population Density': filler = ((JSON.parse(fullNameText)[0].population).toString()).split('');
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                     for (i = 0; i < filler.length; i++) { pop = pop.concat(filler[i]); }
-                                    callback(filler);
                                     var filler2 = ((JSON.parse(fullNameText)[0].area).toString()).split('');
                                     for (i=filler2.length-3; i >0; i=i-3) { filler2.splice(i, 0, ','); }
                                     for (i = 0; i < filler2.length; i++) { area = area.concat(filler2[i]); }
