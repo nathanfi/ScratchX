@@ -63,12 +63,8 @@
                     case 'Area':        filler = ((JSON.parse(halfNameText)[0].area).toString()).split('');
                                           for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                           for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
-                    case 'Population Density': filler = ((JSON.parse(halfNameText)[0].population).toString()).split('');
-                                          for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
-                                          for (i = 0; i < filler.length; i++) { pop = pop.concat(filler[i]); }
-                                          filler = ((JSON.parse(halfNameText)[0].area).toString()).split('');
-                                          for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
-                                          for (i = 0; i < filler.length; i++) { area = area.concat(filler[i]); }
+                    case 'Population Density': pop = ((JSON.parse(halfNameText)[0].population).toString()).split('');
+                                          area = ((JSON.parse(halfNameText)[0].area).toString()).split('');
                                           filler = round(parseInt(pop)/parseInt(area));
                                           for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                           for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
