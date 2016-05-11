@@ -8,8 +8,8 @@
     };
     var output = '';
     var filler = '';
-    var pop;
-    var area;
+    var pop = '';
+    var area = '';
     var request_option = '?fullText=true';
     var url_beginning = 'https://restcountries.eu/rest/v1/name/';
 
