@@ -6,8 +6,8 @@
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    var output;
-    var filler;
+    var output = '';
+    var filler = '';
     var request_option = '?fullText=true';
     var url_beginning = 'https://restcountries.eu/rest/v1/name/';
 
@@ -56,8 +56,9 @@
                     case 'Sub-Region':  output = JSON.parse(halfNameText)[0].subregion;  break;
                     case 'Native Name': output = JSON.parse(halfNameText)[0].nativeName; break;
                     case 'Population':  filler = ((JSON.parse(halfNameText)[0].population).toString()).split('');
-                                          for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
-                                          for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
+                                        callback(filler); break;
+                                          // for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                          // for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
                     case 'Area':        filler = ((JSON.parse(halfNameText)[0].area).toString()).split('');
                                           for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                           for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
