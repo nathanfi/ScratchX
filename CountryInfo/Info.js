@@ -39,7 +39,7 @@
                                     /*
                                     filler = round(parseInt(pop)/parseInt(area));
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
-                                    for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } */ callback(pop + ',' + area); break;
+                                    for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } */ callback(pop + ', ' + area); break;
             }
             if (output === '' || output == ' ') {
               output = 'This country has no capital.';
