@@ -36,7 +36,7 @@
                                     filler = ((JSON.parse(fullNameText)[0].area).toString()).split('');
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                     for (i = 0; i < filler.length; i++) { area = area.concat(filler[i]); }
-                                    filler = parseInt(pop)/parseInt(area); /* round();
+                                    filler = Math.round((parseInt(pop)/parseInt(area))); /* round();
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                     for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } */ callback(filler); break;
             }
