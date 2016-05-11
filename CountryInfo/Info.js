@@ -32,13 +32,13 @@
                                     for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
               case 'Population Density': filler = ((JSON.parse(fullNameText)[0].population).toString()).split('');
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
-                                    for (i = 0; i < filler.length; i++) { pop = pop.concat(filler[i]); }
+                                    for (i = 0; i < filler.length; i++) { pop = pop.concat(filler[i]); } /*
                                     filler = ((JSON.parse(fullNameText)[0].area).toString()).split('');
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                     for (i = 0; i < filler.length; i++) { area = area.concat(filler2[i]); }
                                     filler = round(parseInt(pop)/parseInt(area));
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
-                                    for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
+                                    for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } */ callback(pop); break;
             }
             if (output === '' || output == ' ') {
               output = 'This country has no capital.';
