@@ -34,7 +34,7 @@
               case 'Population Density': pop = (JSON.parse(fullNameText)[0].population).toString();
                                     area = (JSON.parse(fullNameText)[0].area).toString();
                                     output = (Math.round((parseInt(pop)/parseInt(area)))).toString();
-                                    output = output.concat('people per sq. km'); break;
+                                    output = output.concat(' people per sq. km'); break;
             }
             if (output === '' || output == ' ') {
               output = 'This country has no capital.';
