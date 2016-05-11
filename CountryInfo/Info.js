@@ -33,6 +33,9 @@
                                     output = output.concat(' sq. km'); break;
               case 'Population Density': pop = (JSON.parse(fullNameText)[0].population).toString();
                                     area = (JSON.parse(fullNameText)[0].area).toString();
+                                    if (area === null || area == ' ' || area === '') {
+                                      output = 'This country has no area.';
+                                    }
                                     output = (Math.round((parseInt(pop)/parseInt(area)))).toString();
                                     output = output.concat(' people per sq. km'); break;
             }
