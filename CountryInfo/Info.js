@@ -8,6 +8,8 @@
     };
     var output = '';
     var filler = '';
+    var pop;
+    var area;
     var request_option = '?fullText=true';
     var url_beginning = 'https://restcountries.eu/rest/v1/name/';
 
@@ -28,16 +30,16 @@
               case 'Area':        filler = ((JSON.parse(fullNameText)[0].area).toString()).split('');
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                     for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
-              case 'Population Density': var pop; var area; filler = ((JSON.parse(fullNameText)[0].population).toString()).split('');
+              case 'Population Density': filler = ((JSON.parse(fullNameText)[0].population).toString()).split('');
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                     for (i = 0; i < filler.length; i++) { pop = pop.concat(filler[i]); }
-                                    callback(filler); /*
+                                    callback(filler);
                                     var filler2 = ((JSON.parse(fullNameText)[0].area).toString()).split('');
                                     for (i=filler2.length-3; i >0; i=i-3) { filler2.splice(i, 0, ','); }
                                     for (i = 0; i < filler2.length; i++) { area = area.concat(filler2[i]); }
                                     var filler3 = round(parseInt(pop)/parseInt(area));
                                     for (i=filler3.length-3; i >0; i=i-3) { filler3.splice(i, 0, ','); }
-                                    for (i = 0; i < filler3.length; i++) { output = output.concat(filler[i]); } */break;
+                                    for (i = 0; i < filler3.length; i++) { output = output.concat(filler[i]); } break;
             }
             if (output === '' || output == ' ') {
               output = 'This country has no capital.';
