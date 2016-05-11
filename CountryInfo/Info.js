@@ -33,12 +33,12 @@
               case 'Population Density': filler = ((JSON.parse(fullNameText)[0].population).toString()).split('');
                                     for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
                                     for (i = 0; i < filler.length; i++) { pop = pop.concat(filler[i]); }
-                                    var filler2 = ((JSON.parse(fullNameText)[0].area).toString()).split('');
-                                    for (i=filler2.length-3; i >0; i=i-3) { filler2.splice(i, 0, ','); }
-                                    for (i = 0; i < filler2.length; i++) { area = area.concat(filler2[i]); }
-                                    var filler3 = round(parseInt(pop)/parseInt(area));
-                                    for (i=filler3.length-3; i >0; i=i-3) { filler3.splice(i, 0, ','); }
-                                    for (i = 0; i < filler3.length; i++) { output = output.concat(filler[i]); } break;
+                                    filler = ((JSON.parse(fullNameText)[0].area).toString()).split('');
+                                    for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                    for (i = 0; i < filler.length; i++) { area = area.concat(filler2[i]); }
+                                    filler = round(parseInt(pop)/parseInt(area));
+                                    for (i=filler.length-3; i >0; i=i-3) { filler.splice(i, 0, ','); }
+                                    for (i = 0; i < filler.length; i++) { output = output.concat(filler[i]); } break;
             }
             if (output === '' || output == ' ') {
               output = 'This country has no capital.';
