@@ -6,3 +6,6 @@ The code for the ScratchX is available here: http://nathanfi.github.io/ScratchX/
 Examples:
   1. ScratchX/CountryInfo/Capital Quiz.sbx - http://heschel.us/Nathan/ScratchX/CountryInfo/Capital%20Quiz.sbx
   2. ScratchX/CountryInfo/Capital Info.sbx - http://heschel.us/Nathan/ScratchX/CountryInfo/Country%20Info.sbx
+
+
+All information about countries is taken from the REST Countries v1.1.1 API (visit here for more details: https://restcountries.eu/). The maker of this ScratchX is not responsible for incorrect data from the REST Countries API.
