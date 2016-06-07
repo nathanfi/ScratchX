@@ -39,6 +39,50 @@
                                     }
                                     output = (Math.round((parseInt(pop)/parseInt(area)))).toString();
                                     output = output.concat(' people per sq. km'); break;
+              case 'Main Language': filler = JSON.parse(fullNameText)[0].languages[0];
+                                    switch (filler) {
+                                      case 'ar': output = 'Arabic';     break;
+                                      case 'bg': output = 'Bulgarian';  break;
+                                      case 'ca': output = 'Catalan';    break;
+                                      case 'zh': output = 'Chinese';    break;
+                                      case 'hr': output = 'Croatian';   break;
+                                      case 'cs': output = 'Czech';      break;
+                                      case 'da': output = 'Danish';     break;
+                                      case 'nl': output = 'Dutch';      break;
+                                      case 'en': output = 'English';    break;
+                                      case 'et': output = 'Estonian';   break;
+                                      case 'fi': output = 'Finnish';    break;
+                                      case 'fr': output = 'French';     break;
+                                      case 'de': output = 'German';     break;
+                                      case 'el': output = 'Greek';      break;
+                                      case 'he': output = 'Hebrew';     break;
+                                      case 'hi': output = 'Hindi';      break;
+                                      case 'hu': output = 'Hungarian';  break;
+                                      case 'is': output = 'Icelandic';  break;
+                                      case 'id': output = 'Indonesian'; break;
+                                      case 'it': output = 'Italian';    break;
+                                      case 'ja': output = 'Japanese';   break;
+                                      case 'ko': output = 'Korean';     break;
+                                      case 'lv': output = 'Latvian';    break;
+                                      case 'lt': output = 'Lithuanian'; break;
+                                      case 'ms': output = 'Malay';      break;
+                                      case 'no': output = 'Norwegian';  break;
+                                      case 'fa': output = 'Persian';    break;
+                                      case 'pl': output = 'Polish';     break;
+                                      case 'pt': output = 'Portuguese'; break;
+                                      case 'ro': output = 'Romanian';   break;
+                                      case 'ru': output = 'Russian';    break;
+                                      case 'sr': output = 'Serbian';    break;
+                                      case 'sk': output = 'Slovak';     break;
+                                      case 'sl': output = 'Slovenian';  break;
+                                      case 'es': output = 'Spanish';    break;
+                                      case 'sv': output = 'Swedish';    break;
+                                      case 'th': output = 'Thai';       break;
+                                      case 'tr': output = 'Turkish';    break;
+                                      case 'uk': output = 'Ukrainian';  break;
+                                      case 'ur': output = 'Urdu';       break;
+                                      case 'vi': output = 'Vietnamese'; break;
+                                    } break;
             }
             if (output === '' || output == ' ') {
               output = 'This country has no capital.';
@@ -69,6 +113,50 @@
                                           area = (JSON.parse(halfNameText)[0].area).toString();
                                           output = (Math.round((parseInt(pop)/parseInt(area)))).toString();
                                           output = output.concat(' people per sq. km'); break;
+                    case 'Main Language': filler = JSON.parse(halfNameText)[0].languages[0];
+                                          switch (filler) {
+                                            case 'ar': output = 'Arabic';     break;
+                                            case 'bg': output = 'Bulgarian';  break;
+                                            case 'ca': output = 'Catalan';    break;
+                                            case 'zh': output = 'Chinese';    break;
+                                            case 'hr': output = 'Croatian';   break;
+                                            case 'cs': output = 'Czech';      break;
+                                            case 'da': output = 'Danish';     break;
+                                            case 'nl': output = 'Dutch';      break;
+                                            case 'en': output = 'English';    break;
+                                            case 'et': output = 'Estonian';   break;
+                                            case 'fi': output = 'Finnish';    break;
+                                            case 'fr': output = 'French';     break;
+                                            case 'de': output = 'German';     break;
+                                            case 'el': output = 'Greek';      break;
+                                            case 'he': output = 'Hebrew';     break;
+                                            case 'hi': output = 'Hindi';      break;
+                                            case 'hu': output = 'Hungarian';  break;
+                                            case 'is': output = 'Icelandic';  break;
+                                            case 'id': output = 'Indonesian'; break;
+                                            case 'it': output = 'Italian';    break;
+                                            case 'ja': output = 'Japanese';   break;
+                                            case 'ko': output = 'Korean';     break;
+                                            case 'lv': output = 'Latvian';    break;
+                                            case 'lt': output = 'Lithuanian'; break;
+                                            case 'ms': output = 'Malay';      break;
+                                            case 'no': output = 'Norwegian';  break;
+                                            case 'fa': output = 'Persian';    break;
+                                            case 'pl': output = 'Polish';     break;
+                                            case 'pt': output = 'Portuguese'; break;
+                                            case 'ro': output = 'Romanian';   break;
+                                            case 'ru': output = 'Russian';    break;
+                                            case 'sr': output = 'Serbian';    break;
+                                            case 'sk': output = 'Slovak';     break;
+                                            case 'sl': output = 'Slovenian';  break;
+                                            case 'es': output = 'Spanish';    break;
+                                            case 'sv': output = 'Swedish';    break;
+                                            case 'th': output = 'Thai';       break;
+                                            case 'tr': output = 'Turkish';    break;
+                                            case 'uk': output = 'Ukrainian';  break;
+                                            case 'ur': output = 'Urdu';       break;
+                                            case 'vi': output = 'Vietnamese'; break;
+                                          } break;
                     }
                   if (output === '' || output == ' ') {
                     output = 'This country has no ' + option + '.';
@@ -96,7 +184,7 @@
           ['R', '%m.option_input of %s', 'getInfo', 'Capital', 'Afghanistan']
         ],
         menus: {
-          option_input: ['Capital', 'Sub-Region', 'Region', 'Population', 'Area', 'Native Name', 'Population Density', 'Calling Code']
+          option_input: ['Capital', 'Sub-Region', 'Region', 'Population', 'Area', 'Native Name', 'Population Density', 'Calling Code', 'Main Language']
         },
         url: 'http://nathanfi.github.io/ScratchX/CountryInfo/README.md'
     };
