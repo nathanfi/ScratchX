@@ -87,7 +87,7 @@
                                     } break;
             }
             if (output === '' || output == ' ') {
-              output = 'This country has no capital.';
+              output = 'This country has no ' + option + '.';
             }
             callback(output);
             output = '';
