@@ -82,6 +82,8 @@
                                       case 'uk': output = 'Ukrainian';  break;
                                       case 'ur': output = 'Urdu';       break;
                                       case 'vi': output = 'Vietnamese'; break;
+                                      case 'ps': output = 'Pashto';     break;
+                                      default: output = 'The language with the ISO Language Code \'' + filler +'.\'';
                                     } break;
             }
             if (output === '' || output == ' ') {
@@ -156,6 +158,8 @@
                                             case 'uk': output = 'Ukrainian';  break;
                                             case 'ur': output = 'Urdu';       break;
                                             case 'vi': output = 'Vietnamese'; break;
+                                            case 'ps': output = 'Pashto';     break;
+                                            default: output = 'The language with the ISO Language Code \'' + filler +'.\'';
                                           } break;
                     }
                   if (output === '' || output == ' ') {
