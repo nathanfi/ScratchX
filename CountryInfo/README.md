@@ -1,5 +1,5 @@
 # Country Information
-The Country Information extension allows you to learn the capital, population, region, sub-region, native name, and area of any country you can spell. To try it out go here: http://scratchx.org/?url=http://nathanfi.github.io/ScratchX/CountryInfo/Info.js#scratch
+The Country Information extension allows you to learn the capital, population, region, sub-region, native name, area, calling code, main language, and population density of any country you can spell. To try it out go here: http://scratchx.org/?url=http://nathanfi.github.io/ScratchX/CountryInfo/Info.js#scratch
 
 The code for the ScratchX is available here: http://nathanfi.github.io/ScratchX/CountryInfo/Info.js
 
