@@ -6,8 +6,8 @@ Usage note: If you input a fragment of a country's name, the extension will sear
 The code for the ScratchX is available here: http://nathanfi.github.io/ScratchX/CountryInfo/Info.js
 
 Examples:
-  1. ScratchX/CountryInfo/Capital Quiz.sbx - http://heschel.us/Nathan/ScratchX/CountryInfo/Capital%20Quiz.sbx
-  2. ScratchX/CountryInfo/Capital Info.sbx - http://heschel.us/Nathan/ScratchX/CountryInfo/Country%20Info.sbx
+  1. ScratchX/CountryInfo/Country Info.sbx - http://nathanfi.github.io/ScratchX/CountryInfo/Country%20Info.sbx
+  2. ScratchX/CountryInfo/Capital Quiz.sbx - http://nathanfi.github.io/ScratchX/CountryInfo/Capital%20Quiz.sbx
 
 
 All information about countries is taken from the REST Countries v1.1.2 API (visit here for more details: https://restcountries.eu/). The maker of this ScratchX is not responsible for incorrect data from the REST Countries API. 
